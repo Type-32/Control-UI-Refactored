@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "controlui_refactored",
+  "version": "${version}",
+  "name": "ControlUI Refactored",
+  "description": "Control UI is a Fabric Client-Sided mod that allows you to use Baritone AI Pathfinder with a UI.",
+  "authors": [
+    "Type-32"
+  ],
+  "contact": {
+    "website": "https://crtl-prototype-studios.cn",
+    "repo": "https://github.com/Type-32/ControlUI Refactored"
+  },
+  "license": "MIT",
+  "icon": "assets/controlui_refactored/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "cn.crtlprototypestudios.controlui_refactored.client.ControlUIRefactoredClient"
+    ],
+    "main": [
+      "cn.crtlprototypestudios.controlui_refactored.ControlUIRefactored"
+    ]
+  },
+  "mixins": [
+    "controlui_refactored.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
