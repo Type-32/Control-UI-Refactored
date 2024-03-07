@@ -3,7 +3,9 @@
     <components>
         <flow-layout direction="vertical">
             <children>
-                
+                <button id="main">
+                    <text>Hello!</text>
+                </button>
             </children>
             <surface>
                 <vanilla-translucent/>
