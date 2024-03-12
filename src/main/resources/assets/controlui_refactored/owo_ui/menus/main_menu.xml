@@ -3,112 +3,42 @@
     <components>
         <flow-layout direction="vertical">
             <children>
-                <flow-layout direction="horizontal">
-                    <children>
-                        <flow-layout direction="horizontal">
-                            <children>
-                            </children>
-                            <sizing>
-                                <horizontal method="fill">50</horizontal>
-                            </sizing>
-                            <horizontal-alignment>left</horizontal-alignment>
-                            <vertical-alignment>center</vertical-alignment>
-                            <gap>5</gap>
-                        </flow-layout>
-                        <flow-layout direction="vertical">
-                            <children>
-                                <label>
-                                    <text>Quick Actions</text>
-                                    <horizontal-text-alignment>center</horizontal-text-alignment>
-                                    <vertical-text-alignment>center</vertical-text-alignment>
-                                    <color>dark-gray</color>
-                                </label>
-                                <label>
-                                    <text>Menu</text>
-                                    <horizontal-text-alignment>center</horizontal-text-alignment>
-                                    <vertical-text-alignment>center</vertical-text-alignment>
-                                    <color>gray</color>
-                                </label>
-                            </children>
-                            <horizontal-alignment>center</horizontal-alignment>
-                            <vertical-alignment>center</vertical-alignment>
-
-                            <positioning type="relative">50,50</positioning>
-
-                            <sizing>
-                                <horizontal method="fill">100</horizontal>
-                            </sizing>
-                        </flow-layout>
-                        <flow-layout direction="horizontal">
-                            <children>
-                                <button id="action.stop-all">
-                                    <text>Stop</text>
-                                    <horizontal-alignment>right</horizontal-alignment>
-                                </button>
-                                <button id="action.pause-all">
-                                    <text>Pause</text>
-                                    <horizontal-alignment>right</horizontal-alignment>
-                                </button>
-                            </children>
-                            <sizing>
-                                <horizontal method="fill">50</horizontal>
-                            </sizing>
-                            <horizontal-alignment>right</horizontal-alignment>
-                            <vertical-alignment>center</vertical-alignment>
-                            <gap>5</gap>
-                        </flow-layout>
-                    </children>
-
-                    <sizing>
-                        <horizontal method="fill">80</horizontal>
-                    </sizing>
-
-                    <horizontal-alignment>center</horizontal-alignment>
-                    <vertical-alignment>top</vertical-alignment>
-
-                    <padding>
-                        <all>5</all>
-                    </padding>
-
-                    <surface>
-                        <panel dark="true"/>
-                    </surface>
-                </flow-layout>
+                <quick-actions-bar/>
 
                 <flow-layout direction="vertical" id="navigation">
                     <children>
                         <button id="menu.mining">
                             <text>Mining</text>
-                            <surface>
-                                <panel dark="true"/>
-                            </surface>
+                            <renderer>
+                                <flat color="#77000000" hovered-color="#77afafaf" disabled-color="black"/>
+                            </renderer>
                             <sizing>
                                 <horizontal method="fill">20</horizontal>
                             </sizing>
                         </button>
                         <button id="menu.commands">
                             <text>Commands</text>
-                            <surface>
-                                <panel dark="true"/>
-                            </surface>
+                            <renderer>
+                                <flat color="#77000000" hovered-color="#77afafaf" disabled-color="black"/>
+                            </renderer>
                             <sizing>
                                 <horizontal method="fill">20</horizontal>
                             </sizing>
                         </button>
                         <button id="menu.waypoints">
                             <text>Waypoints</text>
-                            <surface>
-                                <panel dark="true"/>
-                            </surface>
+                            <renderer>
+                                <flat color="#77000000" hovered-color="#77afafaf" disabled-color="black"/>
+                            </renderer>
                             <sizing>
                                 <horizontal method="fill">20</horizontal>
                             </sizing>
                         </button>
                         <button id="menu.settings">
                             <text>Settings</text>
-                            <surface>
-                                <panel dark="true"/>
-                            </surface>
+                            <renderer>
+                                <flat color="#77000000" hovered-color="#77afafaf" disabled-color="black"/>
+                            </renderer>
                             <sizing>
                                 <horizontal method="fill">20</horizontal>
                             </sizing>
@@ -150,4 +80,89 @@
             </surface>
         </flow-layout>
     </components>
+    <templates>
+        <template name="quick-actions-bar">
+            <quick-actions-bar-container>
+                <children>
+                    <flow-layout direction="horizontal">
+                        <children>
+
+                        </children>
+                        <sizing>
+                            <horizontal method="fill">50</horizontal>
+                        </sizing>
+                        <horizontal-alignment>left</horizontal-alignment>
+                        <vertical-alignment>center</vertical-alignment>
+                    </flow-layout>
+                    <flow-layout direction="vertical">
+                        <children>
+                            <label>
+                                <text>Quick Actions</text>
+                                <horizontal-text-alignment>center</horizontal-text-alignment>
+                                <vertical-text-alignment>center</vertical-text-alignment>
+                                <color>gray</color>
+                            </label>
+                            <label>
+                                <text>{{current-menu}}</text>
+                                <horizontal-text-alignment>center</horizontal-text-alignment>
+                                <vertical-text-alignment>center</vertical-text-alignment>
+                                <color>aqua</color>
+                            </label>
+                        </children>
+                        <horizontal-alignment>center</horizontal-alignment>
+                        <vertical-alignment>center</vertical-alignment>
+
+                        <positioning type="relative">50,50</positioning>
+
+                        <sizing>
+                            <horizontal method="fill">100</horizontal>
+                            <vertical method="fill">100</vertical>
+                        </sizing>
+                    </flow-layout>
+                    <flow-layout direction="horizontal">
+                        <children>
+                            <button id="action.stop-all">
+                                <text>Stop</text>
+                                <horizontal-alignment>right</horizontal-alignment>
+                                <renderer>
+                                    <flat color="#66000000" hovered-color="#77afafaf" disabled-color="black"/>
+                                </renderer>
+                                <sizing>
+                                    <vertical method="fill">100</vertical>
+                                </sizing>
+                            </button>
+                            <button id="action.pause-all">
+                                <text>Pause</text>
+                                <horizontal-alignment>right</horizontal-alignment>
+                                <renderer>
+                                    <flat color="#66000000" hovered-color="#77afafaf" disabled-color="black"/>
+                                </renderer>
+                                <sizing>
+                                    <vertical method="fill">100</vertical>
+                                </sizing>
+                            </button>
+                        </children>
+                        <sizing>
+                            <horizontal method="fill">50</horizontal>
+                        </sizing>
+                        <horizontal-alignment>right</horizontal-alignment>
+                        <vertical-alignment>center</vertical-alignment>
+                    </flow-layout>
+                </children>
+
+                <sizing>
+                    <horizontal method="fill">80</horizontal>
+                    <vertical method="fixed">24</vertical>
+                </sizing>
+
+                <horizontal-alignment>center</horizontal-alignment>
+                <vertical-alignment>top</vertical-alignment>
+
+                <surface>
+                    <flat>#77000000</flat>
+                    <outline>#000000</outline>
+                </surface>
+            </quick-actions-bar-container>
+        </template>
+    </templates>
 </owo-ui>

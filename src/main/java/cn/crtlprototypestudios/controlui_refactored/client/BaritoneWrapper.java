@@ -2,8 +2,7 @@ package cn.crtlprototypestudios.controlui_refactored.client;
 
 import baritone.api.BaritoneAPI;
 import baritone.api.IBaritone;
-import baritone.api.process.IBaritoneProcess;
-import baritone.api.process.PathingCommand;
+
 
 public class BaritoneWrapper {
     private static IBaritone instance;
@@ -16,14 +15,14 @@ public class BaritoneWrapper {
     }
 
     public static void stopAllActions(){
-        getInstance().getCommandManager().execute("stop");
+//        getInstance().getCommandManager().execute("stop");
     }
 
     public static void pauseAllActions(){
-        getInstance().getCommandManager().execute("pause");
+//        getInstance().getCommandManager().execute("pause");
     }
 
     public static void resumeAllActions(){
-        getInstance().getCommandManager().execute("resume");
+//        getInstance().getCommandManager().execute("resume");
     }
 }
