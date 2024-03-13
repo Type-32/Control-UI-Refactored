@@ -35,46 +35,34 @@ public class MenuScreen extends BaseUIModelScreen<FlowLayout> {
         if (this.uiAdapter != null) {
             quickActionBarHolder = this.uiAdapter.rootComponent.childById(FlowLayout.class, "bar-holder");
         }
-        if(quickActionBarHolder != null){
-            quickActionBarHolder.<FlowLayout>configure(component -> {
-                component.clearChildren();
-                component.child(this.model.expandTemplate(QuickActionsBarContainer.class, "quick-actions-bar@controlui_refactored:menus/main_menu", Map.of(
-                        "current-menu", menuName
-                )));
-            });
 
-            pauseButton = this.uiAdapter.rootComponent.childById(ButtonComponent.class, "action.pause-all");
-            stopButton = this.uiAdapter.rootComponent.childById(ButtonComponent.class, "action.stop-all");
-            homeButton = this.uiAdapter.rootComponent.childById(ButtonComponent.class, "action.home-menu");
+        SetMenuName();
+
+        if(quickActionBarHolder != null){
+            pauseButton = quickActionBarHolder.childById(ButtonComponent.class, "action.pause-all");
+            stopButton = quickActionBarHolder.childById(ButtonComponent.class, "action.stop-all");
+            homeButton = quickActionBarHolder.childById(ButtonComponent.class, "action.home-menu");
+        }
+
+        if (pauseButton != null || stopButton != null || homeButton != null) {
+            pauseButton.onPress(buttonComponent -> {
+                BaritoneWrapper.pauseAllActions();
+                System.out.println("[Control UI] Paused All Baritone Actions");
+            });
+            stopButton.onPress(buttonComponent -> {
+                BaritoneWrapper.stopAllActions();
+                System.out.println("[Control UI] Stopped All Baritone Actions");
+            });
+            homeButton.onPress(buttonComponent -> {
+                this.client.setScreen(new MainMenuScreen());
+                System.out.println("[Control UI] Switch to Main Menu");
+            });
         }
     }
 
     @Override
-    protected void build(FlowLayout rootComponent) {
-        rootComponent.childById(ButtonComponent.class, "menu.mining").onPress(buttonComponent -> {
-            System.out.println("[Control UI] Switch to Mining Menu");
-        });
-        rootComponent.childById(ButtonComponent.class, "menu.commands").onPress(buttonComponent -> {
-            System.out.println("[Control UI] Switch to Commands Menu");
-        });
-        rootComponent.childById(ButtonComponent.class, "menu.waypoints").onPress(buttonComponent -> {
-            System.out.println("[Control UI] Switch to Waypoints Menu");
-        });
-        rootComponent.childById(ButtonComponent.class, "menu.settings").onPress(buttonComponent -> {
-            System.out.println("[Control UI] Switch to Settings Menu");
-        });
+    protected void build(FlowLayout rootComponent){
 
-        if(pauseButton != null || stopButton != null || homeButton != null) {
-            pauseButton.onPress(buttonComponent -> {
-                BaritoneWrapper.pauseAllActions();
-            });
-            stopButton.onPress(buttonComponent -> {
-                BaritoneWrapper.stopAllActions();
-            });
-            homeButton.onPress(buttonComponent -> {
-                this.client.setScreen(new MenuScreen());
-            });
-        }
     }
 
     static {
