@@ -15,14 +15,14 @@ public class BaritoneWrapper {
     }
 
     public static void stopAllActions(){
-//        getInstance().getCommandManager().execute("stop");
+        getInstance().getCommandManager().execute("stop");
     }
 
     public static void pauseAllActions(){
-//        getInstance().getCommandManager().execute("pause");
+        getInstance().getCommandManager().execute("pause");
     }
 
     public static void resumeAllActions(){
-//        getInstance().getCommandManager().execute("resume");
+        getInstance().getCommandManager().execute("resume");
     }
 }

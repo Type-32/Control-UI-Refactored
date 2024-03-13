@@ -19,10 +19,10 @@ repositories {
     flatDir {
         dirs "./lib"
     }
-    maven{
-        name = "Baritone"
-        url = "https://github.com/cabaletta/baritone/releases/download/v1.10.1/baritone-api-1.10.1.jar"
-    }
+//    maven{
+//        name = "Baritone"
+//        url = "https://github.com/cabaletta/baritone/releases/download/v1.10.1/baritone-api-1.10.1.jar"
+//    }
     maven { url 'https://maven.wispforest.io' }
 }
 
@@ -48,7 +48,9 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modImplementation urlFile("https://github.com/cabaletta/baritone/releases/download/v1.10.1/baritone-api-1.10.1.jar", 'baritone', '1.20.1-1.10.1')
+//    modImplementation urlFile("https://github.com/cabaletta/baritone/releases/download/v1.10.1/baritone-api-1.10.1.jar", 'baritone', '1.20.1-1.10.1')
+
+    modImplementation(files(new String("lib/baritone-api-1.20.1-elytra-beta.jar")))
 
     modImplementation "io.wispforest:owo-lib:${project.owo_version}"
     include "io.wispforest:owo-sentinel:${project.owo_version}"
