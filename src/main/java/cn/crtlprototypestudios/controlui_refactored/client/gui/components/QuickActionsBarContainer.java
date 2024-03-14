@@ -10,7 +10,7 @@ public class QuickActionsBarContainer extends FlowLayout {
 
     public QuickActionsBarContainer(){
         super(Sizing.fixed(24), Sizing.fill(80), Algorithm.HORIZONTAL);
-        slideAnimation = positioning().animate(150, Easing.QUADRATIC, positioning().get().withY(positioning().get().y + 10));
+        slideAnimation = positioning().animate(150, Easing.QUADRATIC, positioning().get().withY(20));
 //        child()
     }
 

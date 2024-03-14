@@ -73,7 +73,7 @@ public class MenuScreen extends BaseUIModelScreen<FlowLayout> {
         if(quickActionBarHolder == null) return;
         quickActionBarHolder.<FlowLayout>configure(component -> {
             component.clearChildren();
-            component.child(this.model.expandTemplate(QuickActionsBarContainer.class, "quick-actions-bar@controlui_refactored:menus/main_menu", Map.of(
+            component.child(this.model.expandTemplate(QuickActionsBarContainer.class, "quick-actions-bar@controlui_refactored:components/quick_actions_bar", Map.of(
                     "current-menu", menuName
             )));
         });
