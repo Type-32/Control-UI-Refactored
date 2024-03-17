@@ -17,52 +17,26 @@ public class MenuScreen extends BaseUIModelScreen<FlowLayout> {
     @Nullable
     protected FlowLayout quickActionBarHolder = null;
     @Nullable
-    protected ButtonComponent pauseButton, stopButton, homeButton;
+    protected ButtonComponent pauseButton, resumeButton, stopButton, homeButton;
 
-    public MenuScreen(String path, String name) {
+    private boolean implementQuickActionBar = true;
+
+    public MenuScreen(String path, String name, boolean implementBar) {
         super(FlowLayout.class, new Identifier("controlui_refactored", path));
         menuName = name;
-    }
-
-    public MenuScreen(){
-        this("menus/main_menu", "Menu");
+        implementQuickActionBar = implementBar;
     }
 
     @Override
     protected void init(){
         super.init();
-
-        if (this.uiAdapter != null) {
-            quickActionBarHolder = this.uiAdapter.rootComponent.childById(FlowLayout.class, "bar-holder");
-        }
-
-        SetMenuName();
-
-        if(quickActionBarHolder != null){
-            pauseButton = quickActionBarHolder.childById(ButtonComponent.class, "action.pause-all");
-            stopButton = quickActionBarHolder.childById(ButtonComponent.class, "action.stop-all");
-            homeButton = quickActionBarHolder.childById(ButtonComponent.class, "action.home-menu");
-        }
-
-        if (pauseButton != null || stopButton != null || homeButton != null) {
-            pauseButton.onPress(buttonComponent -> {
-                BaritoneWrapper.pauseAllActions();
-                System.out.println("[Control UI] Paused All Baritone Actions");
-            });
-            stopButton.onPress(buttonComponent -> {
-                BaritoneWrapper.stopAllActions();
-                System.out.println("[Control UI] Stopped All Baritone Actions");
-            });
-            homeButton.onPress(buttonComponent -> {
-                this.client.setScreen(new MainMenuScreen());
-                System.out.println("[Control UI] Switch to Main Menu");
-            });
-        }
+        if (implementQuickActionBar) InitializeQuickActionsBar();
     }
 
     @Override
     protected void build(FlowLayout rootComponent){
-
+        // It is impossible to get the quick actions bar in this build() method
+        // The reason? I don't know why, but the build() method seems to run before init(), which is where the quick action bar is initialized
     }
 
     static {
@@ -77,5 +51,41 @@ public class MenuScreen extends BaseUIModelScreen<FlowLayout> {
                     "current-menu", menuName
             )));
         });
+    }
+
+    public boolean hasQuickActionsBar() { return quickActionBarHolder != null; }
+
+    public void InitializeQuickActionsBar(){
+        if (this.uiAdapter != null) {
+            quickActionBarHolder = this.uiAdapter.rootComponent.childById(FlowLayout.class, "bar-holder");
+        }
+
+        SetMenuName();
+
+        if(quickActionBarHolder != null){
+            pauseButton = quickActionBarHolder.childById(ButtonComponent.class, "action.pause-all");
+            resumeButton = quickActionBarHolder.childById(ButtonComponent.class, "action.resume-all");
+            stopButton = quickActionBarHolder.childById(ButtonComponent.class, "action.stop-all");
+            homeButton = quickActionBarHolder.childById(ButtonComponent.class, "action.home-menu");
+        }
+
+        if (pauseButton != null || stopButton != null || homeButton != null || resumeButton != null) {
+            pauseButton.onPress(buttonComponent -> {
+                BaritoneWrapper.pauseAllActions();
+                System.out.println("[Control UI] Paused All Baritone Actions");
+            });
+            resumeButton.onPress(buttonComponent -> {
+                BaritoneWrapper.resumeAllActions();
+                System.out.println("[Control UI] Resumed All Baritone Actions");
+            });
+            stopButton.onPress(buttonComponent -> {
+                BaritoneWrapper.stopAllActions();
+                System.out.println("[Control UI] Stopped All Baritone Actions");
+            });
+            homeButton.onPress(buttonComponent -> {
+                this.client.setScreen(new MainMenuScreen());
+                System.out.println("[Control UI] Switch to Main Menu");
+            });
+        }
     }
 }

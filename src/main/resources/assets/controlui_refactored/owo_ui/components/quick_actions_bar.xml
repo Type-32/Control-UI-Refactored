@@ -50,8 +50,8 @@
                     </flow-layout>
                     <flow-layout direction="horizontal">
                         <children>
-                            <button id="action.stop-all">
-                                <text>Stop</text>
+                            <button id="action.pause-all">
+                                <text>Pause</text>
                                 <horizontal-alignment>right</horizontal-alignment>
                                 <renderer>
                                     <flat color="#33000000" hovered-color="#77afafaf" disabled-color="black"/>
@@ -60,11 +60,21 @@
                                     <vertical method="fill">100</vertical>
                                 </sizing>
                             </button>
-                            <button id="action.pause-all">
-                                <text>Pause</text>
+                            <button id="action.resume-all">
+                                <text>Resume</text>
                                 <horizontal-alignment>right</horizontal-alignment>
                                 <renderer>
                                     <flat color="#33000000" hovered-color="#77afafaf" disabled-color="black"/>
+                                </renderer>
+                                <sizing>
+                                    <vertical method="fill">100</vertical>
+                                </sizing>
+                            </button>
+                            <button id="action.stop-all">
+                                <text>Stop</text>
+                                <horizontal-alignment>right</horizontal-alignment>
+                                <renderer>
+                                    <flat color="#ff000080" hovered-color="#ff323280" disabled-color="#640000cc"/>
                                 </renderer>
                                 <sizing>
                                     <vertical method="fill">100</vertical>

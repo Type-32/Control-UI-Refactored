@@ -6,7 +6,13 @@ import io.wispforest.owo.ui.container.FlowLayout;
 public class MainMenuScreen extends MenuScreen {
 
     public MainMenuScreen(){
-        super("menus/main_menu", "Menu");
+        super("menus/main_menu", "Menu", true);
+    }
+
+    @Override
+    protected void init(){
+        super.init();
+        if (this.homeButton != null) this.homeButton.active(false);
     }
 
     @Override
