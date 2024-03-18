@@ -1,3 +1,31 @@
-Your favorite baritoe google maps minecraft mod but a UI for it
-[![forthebadge](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTEuNTE1NjQwMjU4Nzg5MDYiIGhlaWdodD0iMzUiIHZpZXdCb3g9IjAgMCAxOTEuNTE1NjQwMjU4Nzg5MDYgMzUiPjxyZWN0IHdpZHRoPSI5OS4zMTI1MDc2MjkzOTQ1MyIgaGVpZ2h0PSIzNSIgZmlsbD0iIzMxQzRGMyIvPjxyZWN0IHg9Ijk5LjMxMjUwNzYyOTM5NDUzIiB3aWR0aD0iOTIuMjAzMTMyNjI5Mzk0NTMiIGhlaWdodD0iMzUiIGZpbGw9IiMzODlBRDUiLz48dGV4dCB4PSI0OS42NTYyNTM4MTQ2OTcyNjYiIHk9IjE3LjUiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSInUm9ib3RvJywgc2Fucy1zZXJpZiIgZmlsbD0iI0ZGRkZGRiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgYWxpZ25tZW50LWJhc2VsaW5lPSJtaWRkbGUiIGxldHRlci1zcGFjaW5nPSIyIj5NQURFIEZPUjwvdGV4dD48dGV4dCB4PSIxNDUuNDE0MDczOTQ0MDkxOCIgeT0iMTcuNSIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9IidNb250c2VycmF0Jywgc2Fucy1zZXJpZiIgZmlsbD0iI0ZGRkZGRiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC13ZWlnaHQ9IjkwMCIgYWxpZ25tZW50LWJhc2VsaW5lPSJtaWRkbGUiIGxldHRlci1zcGFjaW5nPSIyIj5BIEZSSUVORDwvdGV4dD48L3N2Zz4=)](https://forthebadge.com)
-[![forthebadge](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDEuMzIwMzMxNTczNDg2MzMiIGhlaWdodD0iMzUiIHZpZXdCb3g9IjAgMCAyMDEuMzIwMzMxNTczNDg2MzMgMzUiPjxyZWN0IHdpZHRoPSIxNDMuMDg1OTUyNzU4Nzg5MDYiIGhlaWdodD0iMzUiIGZpbGw9IiNmNWE2MjMiLz48cmVjdCB4PSIxNDMuMDg1OTUyNzU4Nzg5MDYiIHdpZHRoPSI1OC4yMzQzNzg4MTQ2OTcyNjYiIGhlaWdodD0iMzUiIGZpbGw9IiNkMDAyMWIiLz48dGV4dCB4PSI3MS41NDI5NzYzNzkzOTQ1MyIgeT0iMTcuNSIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9IidSb2JvdG8nLCBzYW5zLXNlcmlmIiBmaWxsPSIjRkZGRkZGIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgbGV0dGVyLXNwYWNpbmc9IjIiPkkgRlVDS0lORyBIQVRFPC90ZXh0Pjx0ZXh0IHg9IjE3Mi4yMDMxNDIxNjYxMzc3IiB5PSIxNy41IiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0iJ01vbnRzZXJyYXQnLCBzYW5zLXNlcmlmIiBmaWxsPSIjRkZGRkZGIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXdlaWdodD0iOTAwIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSIgbGV0dGVyLXNwYWNpbmc9IjIiPkpBVkE8L3RleHQ+PC9zdmc+)](https://forthebadge.com)
+# Control UI Refactored
+
+Your favorite baritoe "google maps for minecraft mod" but a UI for it.
+
+![fabric-api](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/requires/fabric-api_vector.svg)
+[![github](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg)](https://github.com//Type-32/control-ui-refactored)
+![modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg)
+
+## Dependencies
+- [Baritone (A.K.A. google maps for block game)](https://github.com/cabaletta/baritone) for 1.20.1, **SPECIFICALLY REQUIRES ELYTRA BETA VERSION OR HIGHER** _(For this you probably need to join the Baritone Mod Discord)_
+- [owo-lib](https://modrinth.com/mod/owo-lib) for 1.20.1
+
+## Features
+A full on User Interface made using **owo-lib**'s owo-ui to help players get accquainted with Baritone quickly, and in addition with a few other features such as:
+
+- Macro Commands
+- Mining Presets
+- Better Area Selection Control
+- Better Baritone Settings
+- Better General Baritone Controls
+- ...more to come!
+
+## Versions
+
+The currently supported versions are:
+
+| Fabric | Forge    |
+|--------|----------|
+| 1.20.1 | N/A, TBD |
+
+Ports to lower versions are in consideration (if the Baritone API doesn't make my life harder)

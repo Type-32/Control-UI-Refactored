@@ -10,7 +10,7 @@
                 <flow-layout direction="vertical" id="navigation">
                     <children>
                         <label>
-                            <text>Mining Screen</text>
+                            <text>Commands Screen</text>
                         </label>
                     </children>
 
