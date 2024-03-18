@@ -1,6 +1,7 @@
 package cn.crtlprototypestudios.controlui_refactored.client;
 
 import cn.crtlprototypestudios.controlui_refactored.client.gui.screens.MainMenuScreen;
+import cn.crtlprototypestudios.controlui_refactored.client.gui.utils.BreadcrumbUtils;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -19,6 +20,9 @@ public class ControlUIRefactoredClient implements ClientModInitializer {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (TOGGLEUI.wasPressed()){
                 client.setScreen(new MainMenuScreen());
+            }
+            if (client.currentScreen == null){
+                BreadcrumbUtils.clear();
             }
         });
         System.out.println("Control UI Mod Client-Side Initialized!");

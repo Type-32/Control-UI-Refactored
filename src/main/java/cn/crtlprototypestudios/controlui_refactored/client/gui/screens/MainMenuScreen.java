@@ -1,5 +1,6 @@
 package cn.crtlprototypestudios.controlui_refactored.client.gui.screens;
 
+import cn.crtlprototypestudios.controlui_refactored.client.gui.utils.BreadcrumbUtils;
 import io.wispforest.owo.ui.component.ButtonComponent;
 import io.wispforest.owo.ui.container.FlowLayout;
 
@@ -20,7 +21,7 @@ public class MainMenuScreen extends MenuScreen {
         super.build(rootComponent);
         rootComponent.childById(ButtonComponent.class, "menu.mining").onPress(buttonComponent -> {
             System.out.println("[Control UI] Switch to Mining Menu");
-            this.client.setScreen(new MiningMenuScreen());
+            BreadcrumbUtils.to(new MiningMenuScreen());
         });
         rootComponent.childById(ButtonComponent.class, "menu.commands").onPress(buttonComponent -> {
             System.out.println("[Control UI] Switch to Commands Menu");

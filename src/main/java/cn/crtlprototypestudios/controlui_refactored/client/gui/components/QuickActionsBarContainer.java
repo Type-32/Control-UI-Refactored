@@ -1,25 +1,17 @@
 package cn.crtlprototypestudios.controlui_refactored.client.gui.components;
 
-import io.wispforest.owo.ui.component.Components;
 import io.wispforest.owo.ui.container.FlowLayout;
-import io.wispforest.owo.ui.core.*;
+import io.wispforest.owo.ui.core.Sizing;
 
 public class QuickActionsBarContainer extends FlowLayout {
 
-    protected final Animation<Positioning> slideAnimation;
-
     public QuickActionsBarContainer(){
-        super(Sizing.fixed(24), Sizing.fill(80), Algorithm.HORIZONTAL);
-        slideAnimation = positioning().animate(150, Easing.QUADRATIC, positioning().get().withY(20));
+        super(Sizing.fixed(20), Sizing.fill(100), Algorithm.HORIZONTAL);
 //        child()
     }
 
     @Override
     protected void parentUpdate(float delta, int mouseX, int mouseY) {
-        if (hovered) {
-            slideAnimation.forwards();
-        } else {
-            slideAnimation.backwards();
-        }
+
     }
 }

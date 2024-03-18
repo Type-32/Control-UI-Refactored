@@ -1,5 +1,109 @@
 <owo-ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/wisp-forest/owo-lib/1.20/owo-ui.xsd">
+    <components>
+        <flow-layout direction="horizontal">
+            <children>
+                <flow-layout direction="horizontal">
+                    <children>
+                        <button id="action.home-menu">
+                            <text>Home</text>
+                            <horizontal-alignment>left</horizontal-alignment>
+                            <renderer>
+                                <flat color="#00000000" hovered-color="#77afafaf" disabled-color="black"/>
+                            </renderer>
+                            <sizing>
+                                <vertical method="fill">100</vertical>
+                            </sizing>
+                        </button>
+                    </children>
+                    <sizing>
+                        <horizontal method="fill">50</horizontal>
+                    </sizing>
+                    <horizontal-alignment>left</horizontal-alignment>
+                    <vertical-alignment>center</vertical-alignment>
+                </flow-layout>
+                <flow-layout direction="vertical">
+                    <children>
+                        <label>
+                            <text>Quick Actions</text>
+                            <horizontal-text-alignment>center</horizontal-text-alignment>
+                            <vertical-text-alignment>center</vertical-text-alignment>
+                            <color>gray</color>
+                        </label>
+                        <label>
+                            <text>{{current-menu}}</text>
+                            <horizontal-text-alignment>center</horizontal-text-alignment>
+                            <vertical-text-alignment>center</vertical-text-alignment>
+                            <color>light-purple</color>
+                            <shadow>true</shadow>
+                        </label>
+                    </children>
+                    <horizontal-alignment>center</horizontal-alignment>
+                    <vertical-alignment>center</vertical-alignment>
+
+                    <positioning type="relative">50,50</positioning>
+
+                    <sizing>
+                        <horizontal method="content">10</horizontal>
+                        <vertical method="fill">100</vertical>
+                    </sizing>
+
+                    <surface>
+                        <flat>#141414bf</flat>
+                    </surface>
+                </flow-layout>
+                <flow-layout direction="horizontal">
+                    <children>
+                        <button id="action.pause-all">
+                            <text>Pause</text>
+                            <horizontal-alignment>right</horizontal-alignment>
+                            <renderer>
+                                <flat color="#141414bf" hovered-color="#77afafaf" disabled-color="black"/>
+                            </renderer>
+                            <sizing>
+                                <vertical method="fill">100</vertical>
+                            </sizing>
+                        </button>
+                        <button id="action.resume-all">
+                            <text>Resume</text>
+                            <horizontal-alignment>right</horizontal-alignment>
+                            <renderer>
+                                <flat color="#141414bf" hovered-color="#77afafaf" disabled-color="black"/>
+                            </renderer>
+                            <sizing>
+                                <vertical method="fill">100</vertical>
+                            </sizing>
+                        </button>
+                        <button id="action.stop-all">
+                            <text>Stop</text>
+                            <horizontal-alignment>right</horizontal-alignment>
+                            <renderer>
+                                <flat color="red" hovered-color="#77afafaf" disabled-color="black"/>
+                            </renderer>
+                            <sizing>
+                                <vertical method="fill">100</vertical>
+                            </sizing>
+                        </button>
+                    </children>
+                    <sizing>
+                        <horizontal method="fill">50</horizontal>
+                    </sizing>
+                    <horizontal-alignment>right</horizontal-alignment>
+                    <vertical-alignment>center</vertical-alignment>
+                </flow-layout>
+            </children>
+
+            <positioning type="relative">50,1</positioning>
+
+            <sizing>
+                <horizontal method="fill">100</horizontal>
+                <vertical method="fixed">22</vertical>
+            </sizing>
+
+            <horizontal-alignment>center</horizontal-alignment>
+            <vertical-alignment>top</vertical-alignment>
+        </flow-layout>
+    </components>
     <templates>
         <template name="quick-actions-bar">
             <quick-actions-bar-container>
@@ -10,7 +114,7 @@
                                 <text>Home</text>
                                 <horizontal-alignment>left</horizontal-alignment>
                                 <renderer>
-                                    <flat color="#33000000" hovered-color="#77afafaf" disabled-color="black"/>
+                                    <flat color="#00000000" hovered-color="#77afafaf" disabled-color="black"/>
                                 </renderer>
                                 <sizing>
                                     <vertical method="fill">100</vertical>
@@ -26,16 +130,11 @@
                     <flow-layout direction="vertical">
                         <children>
                             <label>
-                                <text>Quick Actions</text>
-                                <horizontal-text-alignment>center</horizontal-text-alignment>
-                                <vertical-text-alignment>center</vertical-text-alignment>
-                                <color>gray</color>
-                            </label>
-                            <label>
                                 <text>{{current-menu}}</text>
                                 <horizontal-text-alignment>center</horizontal-text-alignment>
                                 <vertical-text-alignment>center</vertical-text-alignment>
-                                <color>aqua</color>
+                                <color>white</color>
+                                <shadow>true</shadow>
                             </label>
                         </children>
                         <horizontal-alignment>center</horizontal-alignment>
@@ -44,37 +143,44 @@
                         <positioning type="relative">50,50</positioning>
 
                         <sizing>
-                            <horizontal method="fill">100</horizontal>
-                            <vertical method="fill">100</vertical>
+                            <horizontal method="content">10</horizontal>
+                            <vertical method="content">10</vertical>
                         </sizing>
+
+                        <surface>
+                            <flat>#00000000</flat>
+                        </surface>
                     </flow-layout>
                     <flow-layout direction="horizontal">
                         <children>
                             <button id="action.pause-all">
-                                <text>Pause</text>
+                                <text>⏸</text>
+                                <tooltip-text>Pause All Baritone Actions</tooltip-text>
                                 <horizontal-alignment>right</horizontal-alignment>
                                 <renderer>
-                                    <flat color="#33000000" hovered-color="#77afafaf" disabled-color="black"/>
+                                    <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
                                 </renderer>
                                 <sizing>
                                     <vertical method="fill">100</vertical>
                                 </sizing>
                             </button>
                             <button id="action.resume-all">
-                                <text>Resume</text>
+                                <text>⏵</text>
+                                <tooltip-text>Resume All Baritone Actions</tooltip-text>
                                 <horizontal-alignment>right</horizontal-alignment>
                                 <renderer>
-                                    <flat color="#33000000" hovered-color="#77afafaf" disabled-color="black"/>
+                                    <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
                                 </renderer>
                                 <sizing>
                                     <vertical method="fill">100</vertical>
                                 </sizing>
                             </button>
                             <button id="action.stop-all">
-                                <text>Stop</text>
+                                <text>⏹</text>
+                                <tooltip-text>Stop All Baritone Actions</tooltip-text>
                                 <horizontal-alignment>right</horizontal-alignment>
                                 <renderer>
-                                    <flat color="#ff000080" hovered-color="#ff323280" disabled-color="#640000cc"/>
+                                    <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
                                 </renderer>
                                 <sizing>
                                     <vertical method="fill">100</vertical>
@@ -86,21 +192,19 @@
                         </sizing>
                         <horizontal-alignment>right</horizontal-alignment>
                         <vertical-alignment>center</vertical-alignment>
+                        <gap>
+                            5
+                        </gap>
                     </flow-layout>
                 </children>
 
                 <sizing>
-                    <horizontal method="fill">80</horizontal>
-                    <vertical method="fixed">24</vertical>
+                    <horizontal method="fill">100</horizontal>
+                    <vertical method="fixed">18</vertical>
                 </sizing>
 
                 <horizontal-alignment>center</horizontal-alignment>
                 <vertical-alignment>top</vertical-alignment>
-
-                <surface>
-                    <flat>#55000000</flat>
-<!--                    <outline>#000000</outline>-->
-                </surface>
             </quick-actions-bar-container>
         </template>
     </templates>
