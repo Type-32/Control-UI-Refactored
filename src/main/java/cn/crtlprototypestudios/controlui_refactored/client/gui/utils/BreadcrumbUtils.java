@@ -29,4 +29,9 @@ public class BreadcrumbUtils {
     public static void clear() {
         screens.clear();
     }
+
+    public static MenuScreen getCurrent() {
+        if (screens.size() <= 0) return null;
+        return screens.peek();
+    }
 }

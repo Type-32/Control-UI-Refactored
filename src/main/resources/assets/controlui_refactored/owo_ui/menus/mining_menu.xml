@@ -7,11 +7,46 @@
                     <children/>
                 </flow-layout>
 
-                <flow-layout direction="vertical" id="navigation">
+                <flow-layout direction="horizontal">
                     <children>
-                        <label>
-                            <text>Mining Screen</text>
-                        </label>
+                        <flow-layout direction="vertical">
+                            <children>
+                                <label>
+                                    <text>Current Active Presets</text>
+                                </label>
+                                <stack-layout>
+                                    <children></children>
+                                </stack-layout>
+                            </children>
+                            <sizing>
+                                <horizontal method="fill">20</horizontal>
+                                <vertical method="fill">100</vertical>
+                            </sizing>
+                        </flow-layout>
+                        <flow-layout direction="vertical">
+                            <children>
+                                <flow-layout direction="horizontal">
+                                    <children>
+                                        <label>
+                                            <text>Available Presets</text>
+                                        </label>
+                                        <button>
+                                            <text>New...</text>
+                                        </button>
+                                    </children>
+                                    <sizing>
+                                        <horizontal method="fill">100</horizontal>
+                                    </sizing>
+                                </flow-layout>
+                                <stack-layout>
+                                    <children></children>
+                                </stack-layout>
+                            </children>
+                            <sizing>
+                                <horizontal method="fill">80</horizontal>
+                                <vertical method="fill">100</vertical>
+                            </sizing>
+                        </flow-layout>
                     </children>
 
                     <surface>
@@ -19,11 +54,15 @@
                     </surface>
 
                     <sizing>
-                        <horizontal method="content">10</horizontal>
-                        <vertical method="content">10</vertical>
+                        <horizontal method="fill">70</horizontal>
+                        <vertical method="fill">70</vertical>
                     </sizing>
 
                     <gap>5</gap>
+
+                    <padding>
+                        <all>5</all>
+                    </padding>
 
                     <vertical-alignment>center</vertical-alignment>
                     <horizontal-alignment>center</horizontal-alignment>
