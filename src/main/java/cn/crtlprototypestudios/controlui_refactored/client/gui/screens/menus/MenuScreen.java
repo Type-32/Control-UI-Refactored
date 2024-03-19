@@ -1,8 +1,8 @@
-package cn.crtlprototypestudios.controlui_refactored.client.gui.screens;
+package cn.crtlprototypestudios.controlui_refactored.client.gui.screens.menus;
 
 import cn.crtlprototypestudios.controlui_refactored.client.BaritoneWrapper;
 import cn.crtlprototypestudios.controlui_refactored.client.gui.components.QuickActionsBarContainer;
-import cn.crtlprototypestudios.controlui_refactored.client.gui.utils.BreadcrumbUtils;
+import cn.crtlprototypestudios.controlui_refactored.client.gui.utils.ScreenStackUtils;
 import io.wispforest.owo.ui.base.BaseUIModelScreen;
 import io.wispforest.owo.ui.component.ButtonComponent;
 import io.wispforest.owo.ui.container.FlowLayout;
@@ -84,7 +84,7 @@ public class MenuScreen extends BaseUIModelScreen<FlowLayout> {
                 System.out.println("[Control UI] Stopped All Baritone Actions");
             });
             homeButton.onPress(buttonComponent -> {
-                BreadcrumbUtils.back();
+                ScreenStackUtils.back();
                 System.out.println("[Control UI] Switch to Main Menu");
             });
         }

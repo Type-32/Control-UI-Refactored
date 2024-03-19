@@ -10,8 +10,4 @@ public class QuickActionsBarContainer extends FlowLayout {
 //        child()
     }
 
-    @Override
-    protected void parentUpdate(float delta, int mouseX, int mouseY) {
-
-    }
 }

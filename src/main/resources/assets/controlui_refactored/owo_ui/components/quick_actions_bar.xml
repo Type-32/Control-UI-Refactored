@@ -111,7 +111,7 @@
                     <flow-layout direction="horizontal">
                         <children>
                             <button id="action.home-menu">
-                                <text>Home</text>
+                                <text>Back</text>
                                 <horizontal-alignment>left</horizontal-alignment>
                                 <renderer>
                                     <flat color="#00000000" hovered-color="#77afafaf" disabled-color="black"/>

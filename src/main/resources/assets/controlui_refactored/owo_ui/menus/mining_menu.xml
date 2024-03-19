@@ -13,39 +13,87 @@
                             <children>
                                 <label>
                                     <text>Active Presets</text>
+                                    <vertical-text-alignment>center</vertical-text-alignment>
+                                    <horizontal-text-alignment>left</horizontal-text-alignment>
+                                    <sizing>
+                                        <horizontal method="content">4</horizontal>
+                                        <vertical method="content">3</vertical>
+                                    </sizing>
                                 </label>
                                 <stack-layout>
                                     <children></children>
+                                    <surface>
+                                        <flat>#33000000</flat>
+                                    </surface>
+                                    <sizing>
+                                        <horizontal method="fill">100</horizontal>
+                                        <vertical method="fill">90</vertical>
+                                    </sizing>
                                 </stack-layout>
                             </children>
                             <sizing>
-                                <horizontal method="fill">20</horizontal>
+                                <horizontal method="fill">30</horizontal>
                                 <vertical method="fill">100</vertical>
                             </sizing>
+                            <gap>10</gap>
                         </flow-layout>
                         <flow-layout direction="vertical">
                             <children>
                                 <flow-layout direction="horizontal">
                                     <children>
+                                        <flow-layout direction="horizontal">
+                                            <children>
+
+                                            </children>
+
+                                            <vertical-alignment>center</vertical-alignment>
+                                            <horizontal-alignment>left</horizontal-alignment>
+                                        </flow-layout>
                                         <label>
                                             <text>Available Presets</text>
+                                            <sizing>
+                                                <horizontal method="fill">80</horizontal>
+                                                <vertical method="content">3</vertical>
+                                            </sizing>
+                                            <horizontal-text-alignment>left</horizontal-text-alignment>
+                                            <vertical-text-alignment>center</vertical-text-alignment>
                                         </label>
-                                        <button>
-                                            <text>New...</text>
+                                        <button id="actions.new-mining-preset">
+                                            <text>+ New</text>
+                                            <horizontal-alignment>right</horizontal-alignment>
+                                            <vertical-alignment>center</vertical-alignment>
+                                            <sizing>
+                                                <horizontal method="fill">20</horizontal>
+                                            </sizing>
+                                            <renderer>
+                                                <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
+                                            </renderer>
                                         </button>
                                     </children>
                                     <sizing>
                                         <horizontal method="fill">100</horizontal>
+                                        <vertical method="content">0</vertical>
                                     </sizing>
+                                    <padding>
+                                        <horizontal>3</horizontal>
+                                    </padding>
                                 </flow-layout>
-                                <stack-layout>
-                                    <children></children>
+                                <stack-layout id="available-presets-holder">
+                                    <children/>
+                                    <surface>
+                                        <flat>#33000000</flat>
+                                    </surface>
+                                    <sizing>
+                                        <horizontal method="fill">100</horizontal>
+                                        <vertical method="fill">90</vertical>
+                                    </sizing>
                                 </stack-layout>
                             </children>
                             <sizing>
-                                <horizontal method="fill">80</horizontal>
+                                <horizontal method="fill">70</horizontal>
                                 <vertical method="fill">100</vertical>
                             </sizing>
+                            <gap>5</gap>
                         </flow-layout>
                     </children>
 
@@ -54,14 +102,14 @@
                     </surface>
 
                     <sizing>
-                        <horizontal method="fill">70</horizontal>
-                        <vertical method="fill">70</vertical>
+                        <horizontal method="fill">95</horizontal>
+                        <vertical method="fill">80</vertical>
                     </sizing>
 
                     <gap>5</gap>
 
                     <padding>
-                        <all>5</all>
+                        <all>10</all>
                     </padding>
 
                     <vertical-alignment>center</vertical-alignment>

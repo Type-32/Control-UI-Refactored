@@ -1,4 +1,4 @@
-package cn.crtlprototypestudios.controlui_refactored.client;
+package cn.crtlprototypestudios.controlui_refactored.client.storage.utils;
 
 import net.fabricmc.loader.api.FabricLoader;
 import org.jetbrains.annotations.Contract;
