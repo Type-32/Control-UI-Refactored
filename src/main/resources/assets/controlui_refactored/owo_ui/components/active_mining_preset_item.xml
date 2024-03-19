@@ -1,0 +1,122 @@
+<owo-ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/wisp-forest/owo-lib/1.20/owo-ui.xsd">
+    <components>
+        <flow-layout direction="horizontal">
+            <children>
+
+            </children>
+
+            <sizing>
+                <horizontal method="fill">100</horizontal>
+                <vertical method="fixed">22</vertical>
+            </sizing>
+
+            <horizontal-alignment>center</horizontal-alignment>
+            <vertical-alignment>top</vertical-alignment>
+        </flow-layout>
+    </components>
+    <templates>
+        <template name="quick-actions-bar">
+            <quick-actions-bar-container>
+                <children>
+                    <flow-layout direction="horizontal">
+                        <children>
+                            <button id="action.home-menu">
+                                <text>Home</text>
+                                <horizontal-alignment>left</horizontal-alignment>
+                                <renderer>
+                                    <flat color="#00000000" hovered-color="#77afafaf" disabled-color="black"/>
+                                </renderer>
+                                <sizing>
+                                    <vertical method="fill">100</vertical>
+                                </sizing>
+                            </button>
+                        </children>
+                        <sizing>
+                            <horizontal method="fill">50</horizontal>
+                        </sizing>
+                        <horizontal-alignment>left</horizontal-alignment>
+                        <vertical-alignment>center</vertical-alignment>
+                    </flow-layout>
+                    <flow-layout direction="vertical">
+                        <children>
+                            <label>
+                                <text>{{current-menu}}</text>
+                                <horizontal-text-alignment>center</horizontal-text-alignment>
+                                <vertical-text-alignment>center</vertical-text-alignment>
+                                <color>white</color>
+                                <shadow>true</shadow>
+                            </label>
+                        </children>
+                        <horizontal-alignment>center</horizontal-alignment>
+                        <vertical-alignment>center</vertical-alignment>
+
+                        <positioning type="relative">50,50</positioning>
+
+                        <sizing>
+                            <horizontal method="content">10</horizontal>
+                            <vertical method="content">10</vertical>
+                        </sizing>
+
+                        <surface>
+                            <flat>#00000000</flat>
+                        </surface>
+                    </flow-layout>
+                    <flow-layout direction="horizontal">
+                        <children>
+                            <button id="action.pause-all">
+                                <text>⏸</text>
+                                <tooltip-text>Pause All Baritone Actions</tooltip-text>
+                                <horizontal-alignment>right</horizontal-alignment>
+                                <renderer>
+                                    <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
+                                </renderer>
+                                <sizing>
+                                    <vertical method="fill">100</vertical>
+                                </sizing>
+                            </button>
+                            <button id="action.resume-all">
+                                <text>⏵</text>
+                                <tooltip-text>Resume All Baritone Actions</tooltip-text>
+                                <horizontal-alignment>right</horizontal-alignment>
+                                <renderer>
+                                    <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
+                                </renderer>
+                                <sizing>
+                                    <vertical method="fill">100</vertical>
+                                </sizing>
+                            </button>
+                            <button id="action.stop-all">
+                                <text>⏹</text>
+                                <tooltip-text>Stop All Baritone Actions</tooltip-text>
+                                <horizontal-alignment>right</horizontal-alignment>
+                                <renderer>
+                                    <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
+                                </renderer>
+                                <sizing>
+                                    <vertical method="fill">100</vertical>
+                                </sizing>
+                            </button>
+                        </children>
+                        <sizing>
+                            <horizontal method="fill">50</horizontal>
+                        </sizing>
+                        <horizontal-alignment>right</horizontal-alignment>
+                        <vertical-alignment>center</vertical-alignment>
+                        <gap>
+                            5
+                        </gap>
+                    </flow-layout>
+                </children>
+
+                <sizing>
+                    <horizontal method="fill">100</horizontal>
+                    <vertical method="fixed">18</vertical>
+                </sizing>
+
+                <horizontal-alignment>center</horizontal-alignment>
+                <vertical-alignment>top</vertical-alignment>
+            </quick-actions-bar-container>
+        </template>
+    </templates>
+</owo-ui>

@@ -12,7 +12,7 @@
                         <flow-layout direction="vertical">
                             <children>
                                 <label>
-                                    <text>Current Active Presets</text>
+                                    <text>Active Presets</text>
                                 </label>
                                 <stack-layout>
                                     <children></children>
