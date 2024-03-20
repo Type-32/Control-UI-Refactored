@@ -5,8 +5,8 @@
             <children>
                 <flow-layout direction="horizontal">
                     <children>
-                        <item>
-                            <stack>{{block-id}}</stack>
+                        <item id="icon.preview-block-item">
+                            <stack>minecraft:barrier</stack>
                         </item>
                         <label>
                             <text>{{block-name}}</text>
@@ -48,14 +48,15 @@
             </padding>
         </flow-layout>
     </components>
+    <!--TODO: Rename everything for code readability-->
     <templates>
         <template name="block-item-list-item">
             <flow-layout direction="horizontal">
                 <children>
                     <flow-layout direction="horizontal">
                         <children>
-                            <item>
-                                <stack>{{block-id}}</stack>
+                            <item id="icon.preview-block-item">
+                                <stack>minecraft:barrier</stack>
                             </item>
                             <label>
                                 <text>{{block-name}}</text>
@@ -68,7 +69,7 @@
                         </children>
                         <horizontal-alignment>left</horizontal-alignment>
                         <sizing>
-                            <horizontal method="fill">85</horizontal>
+                            <horizontal method="fill">90</horizontal>
                         </sizing>
                         <gap>5</gap>
                     </flow-layout>
@@ -78,7 +79,7 @@
                             <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
                         </renderer>
                         <sizing>
-                            <horizontal method="fill">15</horizontal>
+                            <horizontal method="fill">10</horizontal>
                             <vertical method="fill">100</vertical>
                         </sizing>
                         <horizontal-alignment>center</horizontal-alignment>

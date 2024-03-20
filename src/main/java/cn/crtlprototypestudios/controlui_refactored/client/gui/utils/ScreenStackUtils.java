@@ -33,6 +33,10 @@ public class ScreenStackUtils {
         return screen;
     }
 
+    public static MenuScreen refresh() {
+        return render(screens.peek());
+    }
+
     public static void clear() {
         screens.clear();
     }

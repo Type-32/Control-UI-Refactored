@@ -77,54 +77,7 @@
                                 </flow-layout>
                                 <scroll direction="vertical">
                                     <flow-layout direction="vertical" id="block-item-preview-holder">
-                                        <children>
-                                            <flow-layout direction="horizontal">
-                                                <children>
-                                                    <flow-layout direction="horizontal">
-                                                        <children>
-                                                            <item>
-                                                                <stack>minecraft:oak_log</stack>
-                                                            </item>
-                                                            <label>
-                                                                <text>Text</text>
-                                                                <sizing>
-                                                                    <horizontal method="fill">80</horizontal>
-                                                                    <vertical method="content">4</vertical>
-                                                                </sizing>
-                                                                <color>gray</color>
-                                                            </label>
-                                                        </children>
-                                                        <horizontal-alignment>left</horizontal-alignment>
-                                                        <sizing>
-                                                            <horizontal method="fill">75</horizontal>
-                                                        </sizing>
-                                                        <gap>5</gap>
-                                                    </flow-layout>
-                                                    <button id="action.remove-new-mining-preset-block-item">
-                                                        <text>Remove</text>
-                                                        <renderer>
-                                                            <flat color="dark-red" hovered-color="red" disabled-color="black"/>
-                                                        </renderer>
-                                                        <sizing>
-                                                            <horizontal method="fill">25</horizontal>
-                                                            <vertical method="fill">100</vertical>
-                                                        </sizing>
-                                                        <horizontal-alignment>center</horizontal-alignment>
-                                                    </button>
-                                                </children>
-                                                <vertical-alignment>center</vertical-alignment>
-                                                <surface>
-                                                    <flat>#70000000</flat>
-                                                </surface>
-                                                <sizing>
-                                                    <horizontal method="fill">99</horizontal>
-                                                    <vertical method="fixed">22</vertical>
-                                                </sizing>
-                                                <padding>
-                                                    <left>5</left>
-                                                </padding>
-                                            </flow-layout>
-                                        </children>
+                                        <children/>
                                         <sizing>
                                             <horizontal method="fill">100</horizontal>
                                         </sizing>

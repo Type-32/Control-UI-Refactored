@@ -13,86 +13,43 @@
                             <text>Select Block</text>
                             <shadow>true</shadow>
                             <vertical-text-alignment>center</vertical-text-alignment>
-                            <horizontal-text-alignment>left</horizontal-text-alignment>
+                            <horizontal-text-alignment>center</horizontal-text-alignment>
+                            <sizing>
+                                <horizontal method="fill">100</horizontal>
+                            </sizing>
                         </label>
                         <text-box id="input.block-search-bar">
                             <sizing>
                                 <horizontal method="fill">100</horizontal>
                             </sizing>
                             <surface>
-                                <flat>#33000000</flat>
+                                <flat>#99000000</flat>
                             </surface>
-                            <show-background>false</show-background>
+                            <show-background>true</show-background>
                         </text-box>
-                        <flow-layout direction="vertical">
-                            <children>
-                                <scroll direction="vertical">
-                                    <flow-layout direction="vertical" id="block-item-list-holder">
-                                        <children>
-                                            <flow-layout direction="horizontal">
-                                                <children>
-                                                    <flow-layout direction="horizontal">
-                                                        <children>
-                                                            <item>
-                                                                <stack>{{block-id}}</stack>
-                                                            </item>
-                                                            <label>
-                                                                <text>{{block-name}}</text>
-                                                                <sizing>
-                                                                    <horizontal method="fill">80</horizontal>
-                                                                    <vertical method="content">4</vertical>
-                                                                </sizing>
-                                                                <color>gray</color>
-                                                            </label>
-                                                        </children>
-                                                        <horizontal-alignment>left</horizontal-alignment>
-                                                        <sizing>
-                                                            <horizontal method="fill">85</horizontal>
-                                                        </sizing>
-                                                        <gap>5</gap>
-                                                    </flow-layout>
-                                                    <button id="action.select-block-item">
-                                                        <text>+</text>
-                                                        <renderer>
-                                                            <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
-                                                        </renderer>
-                                                        <sizing>
-                                                            <horizontal method="fill">15</horizontal>
-                                                            <vertical method="fill">100</vertical>
-                                                        </sizing>
-                                                        <horizontal-alignment>center</horizontal-alignment>
-                                                    </button>
-                                                </children>
-                                                <vertical-alignment>center</vertical-alignment>
-                                                <surface>
-                                                    <flat>#70000000</flat>
-                                                </surface>
-                                                <sizing>
-                                                    <horizontal method="fill">99</horizontal>
-                                                    <vertical method="fixed">22</vertical>
-                                                </sizing>
-                                                <padding>
-                                                    <left>5</left>
-                                                </padding>
-                                            </flow-layout>
-                                        </children>
-                                        <sizing>
-                                            <horizontal method="fill">100</horizontal>
-                                        </sizing>
-                                        <gap>5</gap>
-                                    </flow-layout>
-                                    <sizing>
-                                        <horizontal method="fill">100</horizontal>
-                                        <vertical method="fill">10</vertical>
-                                    </sizing>
-                                </scroll>
-                            </children>
-                            <gap>5</gap>
-                            <margins>
-                                <top>10</top>
-                            </margins>
-                            <vertical-alignment>top</vertical-alignment>
-                        </flow-layout>
+                        <scroll direction="vertical">
+                            <flow-layout direction="vertical" id="block-item-list-holder">
+                                <children/>
+                                <sizing>
+                                    <horizontal method="fill">100</horizontal>
+                                </sizing>
+                                <gap>2</gap>
+                            </flow-layout>
+                            <sizing>
+                                <horizontal method="fill">100</horizontal>
+                                <vertical method="fill">75</vertical>
+                            </sizing>
+                        </scroll>
+                        <button id="action.cancel-block-selection">
+                            <text>Cancel</text>
+                            <horizontal-alignment>left</horizontal-alignment>
+                            <renderer>
+                                <flat color="#33000000" hovered-color="#77afafaf" disabled-color="black"/>
+                            </renderer>
+                            <sizing>
+                                <horizontal method="fill">100</horizontal>
+                            </sizing>
+                        </button>
                     </children>
 
                     <surface>
@@ -114,6 +71,7 @@
                     <padding>
                         <all>10</all>
                     </padding>
+
                 </flow-layout>
             </children>
 
@@ -126,7 +84,7 @@
             <horizontal-alignment>center</horizontal-alignment>
 
             <padding>
-                <all>10</all>
+                <all>5</all>
             </padding>
 
             <surface>
@@ -134,54 +92,4 @@
             </surface>
         </flow-layout>
     </components>
-    <templates>
-        <template name="block-item-list-item">
-            <flow-layout direction="horizontal">
-                <children>
-                    <flow-layout direction="horizontal">
-                        <children>
-                            <item>
-                                <stack>{{block-id}}</stack>
-                            </item>
-                            <label>
-                                <text>{{block-name}}</text>
-                                <sizing>
-                                    <horizontal method="fill">80</horizontal>
-                                    <vertical method="content">4</vertical>
-                                </sizing>
-                                <color>gray</color>
-                            </label>
-                        </children>
-                        <horizontal-alignment>left</horizontal-alignment>
-                        <sizing>
-                            <horizontal method="fill">85</horizontal>
-                        </sizing>
-                        <gap>5</gap>
-                    </flow-layout>
-                    <button>
-                        <text>+</text>
-                        <renderer>
-                            <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
-                        </renderer>
-                        <sizing>
-                            <horizontal method="fill">15</horizontal>
-                            <vertical method="fill">100</vertical>
-                        </sizing>
-                        <horizontal-alignment>center</horizontal-alignment>
-                    </button>
-                </children>
-                <vertical-alignment>center</vertical-alignment>
-                <surface>
-                    <flat>#70000000</flat>
-                </surface>
-                <sizing>
-                    <horizontal method="fill">99</horizontal>
-                    <vertical method="fixed">22</vertical>
-                </sizing>
-                <padding>
-                    <left>5</left>
-                </padding>
-            </flow-layout>
-        </template>
-    </templates>
 </owo-ui>

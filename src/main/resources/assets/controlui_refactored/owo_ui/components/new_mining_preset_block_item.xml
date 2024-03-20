@@ -5,11 +5,11 @@
             <children>
                 <flow-layout direction="horizontal">
                     <children>
-                        <item>
+                        <item id="preview.mining-preset-block-item">
                             <stack>minecraft:oak_log</stack>
                         </item>
                         <label>
-                            <text>Text</text>
+                            <text>{{block-name}}</text>
                             <sizing>
                                 <horizontal method="fill">80</horizontal>
                                 <vertical method="content">4</vertical>
@@ -23,7 +23,7 @@
                     </sizing>
                     <gap>5</gap>
                 </flow-layout>
-                <button>
+                <button id="action.remove-new-mining-preset-block-item">
                     <text>Remove</text>
                     <renderer>
                         <flat color="dark-red" hovered-color="red" disabled-color="black"/>
@@ -48,14 +48,15 @@
             </padding>
         </flow-layout>
     </components>
+    <!--TODO: Rename everything for code readability-->
     <templates>
         <template name="new_mining_preset_block_item">
             <flow-layout direction="horizontal">
                 <children>
                     <flow-layout direction="horizontal">
                         <children>
-                            <item>
-                                <stack>{{block-id}}</stack>
+                            <item id="preview.mining-preset-block-item">
+                                <stack>minecraft:barrier</stack>
                             </item>
                             <label>
                                 <text>{{block-name}}</text>

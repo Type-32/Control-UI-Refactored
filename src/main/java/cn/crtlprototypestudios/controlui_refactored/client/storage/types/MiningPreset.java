@@ -1,5 +1,7 @@
 package cn.crtlprototypestudios.controlui_refactored.client.storage.types;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import net.minecraft.block.Block;
 
 import java.util.ArrayList;
@@ -89,5 +91,19 @@ public class MiningPreset {
             identifierList += block.getLootTableId().toString() + " ";
         }
         return identifierList;
+    }
+
+    public JsonObject toJSONObject(){
+        JsonObject json = new JsonObject();
+        JsonArray identifiers = new JsonArray();
+        json.addProperty("preset_name", presetName);
+        json.addProperty("preset_description", presetDescription);
+        json.addProperty("preset_type", presetType.toString());
+
+        for(Block block : blocks)
+            identifiers.add(block.getLootTableId().toString());
+        json.add("blocks", identifiers);
+        json.addProperty("amount", amount);
+        return json;
     }
 }

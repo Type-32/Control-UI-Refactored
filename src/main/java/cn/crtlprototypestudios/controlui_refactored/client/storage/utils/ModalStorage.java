@@ -1,18 +1,16 @@
 package cn.crtlprototypestudios.controlui_refactored.client.storage.utils;
 
 import cn.crtlprototypestudios.controlui_refactored.client.storage.types.MiningPreset;
+import cn.crtlprototypestudios.controlui_refactored.client.storage.types.MiningPresetType;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
-import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import net.minecraft.block.Block;
 
 public class ModalStorage {
-    public static MiningPreset miningPreset;
+    public static MiningPreset miningPreset = new MiningPreset("", "", MiningPresetType.ArrayBased, new ArrayList<>(), 64);
     public static ArrayList<Block> blocksSelection = new ArrayList<>();
     public static ArrayList<Block> cachedBlocksRegistry = new ArrayList<>();
 
@@ -22,9 +20,12 @@ public class ModalStorage {
     }
 
     public static void getAllRegisteredBlocks() {
-        if (cachedBlocksRegistry.size() > 0) {
+        if (!cachedBlocksRegistry.isEmpty()) {
             return;
         }
-        cachedBlocksRegistry.addAll(Registries.BLOCK.stream().toList());
+        for(Block block : Registries.BLOCK.stream().toList()){
+            if(block == Blocks.AIR || block == Blocks.CAVE_AIR || block == Blocks.VOID_AIR || block.asItem() == Items.AIR) continue;
+            cachedBlocksRegistry.add(block);
+        }
     }
 }

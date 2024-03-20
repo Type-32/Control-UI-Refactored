@@ -1,14 +1,12 @@
 package cn.crtlprototypestudios.controlui_refactored.client.storage.utils;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonReader;
 import net.fabricmc.loader.api.FabricLoader;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import org.spongepowered.include.com.google.gson.Gson;
-import org.spongepowered.include.com.google.gson.GsonBuilder;
-import org.spongepowered.include.com.google.gson.JsonElement;
-import org.spongepowered.include.com.google.gson.stream.JsonReader;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -57,12 +55,13 @@ public class ControlUIRefactoredStorage {
         Path filePath = resolveDataFilePath(filename, relay);
         try {
             Files.createDirectories(filePath.getParent());
-            String json = gson.toJson((JsonElement) data);
+            String json = gson.toJson(data);
             Files.writeString(filePath, json);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     /**
      * Loads the data of the specified class from a file with the given filename, optionally as a relay file.
@@ -76,6 +75,53 @@ public class ControlUIRefactoredStorage {
     public <T> T loadData(Class<T> dataClass, String filename, boolean relay) {
         Gson gson = new Gson();
         Path filePath = resolveDataFilePath(filename, relay);
+        if (Files.exists(filePath)) {
+            try {
+                String json = Files.readString(filePath);
+                return gson.fromJson(new JsonReader(Files.newBufferedReader(filePath)), dataClass);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            return dataClass.newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            throw new RuntimeException("Unable to create instance of data class", e);
+        }
+    }
+
+    /**
+     * Saves the given data object to a JSON file.
+     *
+     * @param  data     the data object to be saved
+     * @param  filename the name of the file to save the data to
+     * @param  relay    a boolean flag indicating whether to relay the data
+     */
+    public void saveConfig(Object data, String filename, boolean relay) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Path filePath = resolveConfigFilePath(filename, relay);
+        try {
+            Files.createDirectories(filePath.getParent());
+            String json = gson.toJson(gson.toJsonTree(data));
+            Files.writeString(filePath, json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * Loads the data of the specified class from a file with the given filename, optionally as a relay file.
+     *
+     * @param dataClass the class of the data to load
+     * @param filename  the name of the file
+     * @param relay     true if it's a relay file, false otherwise
+     * @param <T>       the type of the data
+     * @return the loaded data
+     */
+    public <T> T loadConfig(Class<T> dataClass, String filename, boolean relay) {
+        Gson gson = new Gson();
+        Path filePath = resolveConfigFilePath(filename, relay);
         if (Files.exists(filePath)) {
             try {
                 String json = Files.readString(filePath);

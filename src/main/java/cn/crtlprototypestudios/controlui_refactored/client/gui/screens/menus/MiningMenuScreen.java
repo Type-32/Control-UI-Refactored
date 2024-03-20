@@ -3,7 +3,7 @@ package cn.crtlprototypestudios.controlui_refactored.client.gui.screens.menus;
 import cn.crtlprototypestudios.controlui_refactored.client.gui.screens.modals.NewMiningPresetModalScreen;
 import cn.crtlprototypestudios.controlui_refactored.client.gui.utils.ScreenStackUtils;
 import cn.crtlprototypestudios.controlui_refactored.client.storage.types.MiningPreset;
-import cn.crtlprototypestudios.controlui_refactored.client.storage.types.MiningPresetsData;
+import cn.crtlprototypestudios.controlui_refactored.client.storage.types.MiningPresets;
 import cn.crtlprototypestudios.controlui_refactored.client.storage.utils.ControlUIRefactoredStorage;
 import io.wispforest.owo.ui.component.ButtonComponent;
 import io.wispforest.owo.ui.component.Components;
@@ -30,7 +30,7 @@ public class MiningMenuScreen extends MenuScreen{
     }
 
     public void LoadAvailablePresets(){
-        MiningPresetsData data = storage.loadData(MiningPresetsData.class, "mining_presets", false);
+        MiningPresets data = storage.loadData(MiningPresets.class, "mining_presets", false);
 
         StackLayout stackLayout = this.uiAdapter.rootComponent.childById(StackLayout.class, "available-presets-holder");
         assert stackLayout != null;
