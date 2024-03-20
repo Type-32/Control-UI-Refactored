@@ -17,6 +17,6 @@ public class NewMiningPresetModalBlockItem extends FlowLayout {
 
     public void injectTemplate(Block storedBlockInfo) {
         this.storedBlockInfo = storedBlockInfo;
-
+//        this.
     }
 }

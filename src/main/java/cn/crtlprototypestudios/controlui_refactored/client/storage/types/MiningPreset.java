@@ -65,7 +65,7 @@ public class MiningPreset {
     }
 
     public void setBlocks(ArrayList<Block> blocks) {
-        this.blocks = blocks;
+        this.blocks = new ArrayList<>(blocks);
     }
 
     /**

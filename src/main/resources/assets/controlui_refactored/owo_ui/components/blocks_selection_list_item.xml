@@ -1,0 +1,101 @@
+<owo-ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/wisp-forest/owo-lib/1.20/owo-ui.xsd">
+    <components>
+        <flow-layout direction="horizontal">
+            <children>
+                <flow-layout direction="horizontal">
+                    <children>
+                        <item>
+                            <stack>{{block-id}}</stack>
+                        </item>
+                        <label>
+                            <text>{{block-name}}</text>
+                            <sizing>
+                                <horizontal method="fill">80</horizontal>
+                                <vertical method="content">4</vertical>
+                            </sizing>
+                            <color>gray</color>
+                        </label>
+                    </children>
+                    <horizontal-alignment>left</horizontal-alignment>
+                    <sizing>
+                        <horizontal method="fill">85</horizontal>
+                    </sizing>
+                    <gap>5</gap>
+                </flow-layout>
+                <button id="action.select-block-item">
+                    <text>+</text>
+                    <renderer>
+                        <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
+                    </renderer>
+                    <sizing>
+                        <horizontal method="fill">15</horizontal>
+                        <vertical method="fill">100</vertical>
+                    </sizing>
+                    <horizontal-alignment>center</horizontal-alignment>
+                </button>
+            </children>
+            <vertical-alignment>center</vertical-alignment>
+            <surface>
+                <flat>#70000000</flat>
+            </surface>
+            <sizing>
+                <horizontal method="fill">99</horizontal>
+                <vertical method="fixed">22</vertical>
+            </sizing>
+            <padding>
+                <left>5</left>
+            </padding>
+        </flow-layout>
+    </components>
+    <templates>
+        <template name="block-item-list-item">
+            <flow-layout direction="horizontal">
+                <children>
+                    <flow-layout direction="horizontal">
+                        <children>
+                            <item>
+                                <stack>{{block-id}}</stack>
+                            </item>
+                            <label>
+                                <text>{{block-name}}</text>
+                                <sizing>
+                                    <horizontal method="fill">80</horizontal>
+                                    <vertical method="content">4</vertical>
+                                </sizing>
+                                <color>gray</color>
+                            </label>
+                        </children>
+                        <horizontal-alignment>left</horizontal-alignment>
+                        <sizing>
+                            <horizontal method="fill">85</horizontal>
+                        </sizing>
+                        <gap>5</gap>
+                    </flow-layout>
+                    <button id="action.select-block-item">
+                        <text>+</text>
+                        <renderer>
+                            <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
+                        </renderer>
+                        <sizing>
+                            <horizontal method="fill">15</horizontal>
+                            <vertical method="fill">100</vertical>
+                        </sizing>
+                        <horizontal-alignment>center</horizontal-alignment>
+                    </button>
+                </children>
+                <vertical-alignment>center</vertical-alignment>
+                <surface>
+                    <flat>#70000000</flat>
+                </surface>
+                <sizing>
+                    <horizontal method="fill">99</horizontal>
+                    <vertical method="fixed">22</vertical>
+                </sizing>
+                <padding>
+                    <left>5</left>
+                </padding>
+            </flow-layout>
+        </template>
+    </templates>
+</owo-ui>

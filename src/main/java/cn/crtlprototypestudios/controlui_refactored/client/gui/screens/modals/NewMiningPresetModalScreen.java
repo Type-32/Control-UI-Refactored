@@ -40,19 +40,32 @@ public class NewMiningPresetModalScreen extends MenuScreen {
 
             data.presets.add(preset);
             storage.saveData(data, FileNameReferences.MINING_PRESETS_FILENAME, true);
+            ModalStorage.clearCache();
             ScreenStackUtils.back();
         });
+
+        rootComponent.childById(ButtonComponent.class, "action.add-block-to-preset").onPress(component -> {
+            ScreenStackUtils.to(new BlocksSelectionModalScreen());
+        });
+
+        injectSelectedBlockPreviewTemplate(rootComponent);
+    }
+
+    protected void injectSelectedBlockPreviewTemplate(FlowLayout rootComponent) {
         FlowLayout blockPreviewHolder = rootComponent.childById(FlowLayout.class, "block-item-preview-holder");
         assert blockPreviewHolder != null;
         blockPreviewHolder.clearChildren();
         blockPreviewHolder.<FlowLayout>configure(component -> {
+            if (ModalStorage.blocksSelection.size() > 0) ModalStorage.miningPreset.setBlocks(ModalStorage.blocksSelection);
+            else return;
             for (Block block : ModalStorage.miningPreset.getBlocks()) {
                 FlowLayout blockItemPreview = component.child(this.model.expandTemplate(FlowLayout.class, "new_mining_preset_block_item@controlui_refactored:components/new_mining_preset_block_item", Map.of(
-                    "block-id", block.asItem().getDefaultStack().toString(),
-                    "block-name", block.asItem().getDefaultStack().getName().toString()
+                        "block-id", block.asItem().getDefaultStack().toString(),
+                        "block-name", block.asItem().getDefaultStack().getName().toString()
                 )));
                 blockItemPreview.childById(ButtonComponent.class, "action.remove-new-mining-preset-block-item").onPress(button -> {
                     ModalStorage.miningPreset.getBlocks().remove(block);
+                    injectSelectedBlockPreviewTemplate(rootComponent);
                 });
             }
         });
