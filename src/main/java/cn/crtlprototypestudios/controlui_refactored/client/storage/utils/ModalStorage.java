@@ -13,6 +13,7 @@ public class ModalStorage {
     public static MiningPreset miningPreset = new MiningPreset("", "", MiningPresetType.ArrayBased, new ArrayList<>(), 64);
     public static ArrayList<Block> blocksSelection = new ArrayList<>();
     public static ArrayList<Block> cachedBlocksRegistry = new ArrayList<>();
+    public static ArrayList<String> cachedBlocksIdentifiers = new ArrayList<>();
 
     public static void clearCache(){
         miningPreset = null;
@@ -26,6 +27,7 @@ public class ModalStorage {
         for(Block block : Registries.BLOCK.stream().toList()){
             if(block == Blocks.AIR || block == Blocks.CAVE_AIR || block == Blocks.VOID_AIR || block.asItem() == Items.AIR) continue;
             cachedBlocksRegistry.add(block);
+            cachedBlocksIdentifiers.add(block.getLootTableId().toString());
         }
     }
 }

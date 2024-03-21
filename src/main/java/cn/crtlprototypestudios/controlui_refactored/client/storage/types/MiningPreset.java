@@ -1,12 +1,17 @@
 package cn.crtlprototypestudios.controlui_refactored.client.storage.types;
 
+import cn.crtlprototypestudios.controlui_refactored.client.data_types.IJsonConvertible;
+import cn.crtlprototypestudios.controlui_refactored.client.storage.utils.ModalStorage;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 
 import java.util.ArrayList;
 
-public class MiningPreset {
+public class MiningPreset implements IJsonConvertible<MiningPreset> {
     private String presetName;
     private String presetDescription;
     private MiningPresetType presetType;
@@ -27,6 +32,16 @@ public class MiningPreset {
         this.presetName = presetName;
         this.presetDescription = presetDescription;
         this.presetType = MiningPresetType.GoalBased;
+    }
+
+    public MiningPreset(JsonObject json){
+        MiningPreset obj = fromJsonObject(json);
+
+        presetName = obj.getPresetName();
+        presetDescription = obj.getPresetDescription();
+        presetType = obj.getPresetType();
+        blocks = obj.getBlocks();
+        amount = obj.getAmount();
     }
 
 
@@ -93,12 +108,13 @@ public class MiningPreset {
         return identifierList;
     }
 
-    public JsonObject toJSONObject(){
+    @Override
+    public JsonObject toJsonObject() {
         JsonObject json = new JsonObject();
         JsonArray identifiers = new JsonArray();
-        json.addProperty("preset_name", presetName);
-        json.addProperty("preset_description", presetDescription);
-        json.addProperty("preset_type", presetType.toString());
+        json.addProperty("presetName", presetName);
+        json.addProperty("presetDescription", presetDescription);
+        json.addProperty("presetType", presetType.toString());
 
         for(Block block : blocks)
             identifiers.add(block.getLootTableId().toString());
@@ -106,4 +122,22 @@ public class MiningPreset {
         json.addProperty("amount", amount);
         return json;
     }
+
+    @Override
+    public MiningPreset fromJsonObject(JsonObject json) {
+        ArrayList<Block> ids = new ArrayList<>();
+
+        ModalStorage.getAllRegisteredBlocks();
+        for(JsonElement id : json.getAsJsonArray(JSON_BLOCKS).asList()){
+            if (ModalStorage.cachedBlocksIdentifiers.contains(id.getAsString()))
+                ids.add(ModalStorage.cachedBlocksRegistry.get(ModalStorage.cachedBlocksIdentifiers.indexOf(id.getAsString())));
+        }
+        return new MiningPreset(json.get(JSON_PRESET_NAME).getAsString(), json.get(JSON_PRESET_DESCRIPTION).getAsString(), MiningPresetType.valueOf(json.get(JSON_PRESET_TYPE).getAsString()), ids, json.get(JSON_AMOUNT).getAsInt());
+    }
+
+    private static final String JSON_PRESET_NAME = "presetName";
+    private static final String JSON_PRESET_DESCRIPTION = "presetDescription";
+    private static final String JSON_PRESET_TYPE = "presetType";
+    private static final String JSON_BLOCKS = "blocks";
+    private static final String JSON_AMOUNT = "amount";
 }

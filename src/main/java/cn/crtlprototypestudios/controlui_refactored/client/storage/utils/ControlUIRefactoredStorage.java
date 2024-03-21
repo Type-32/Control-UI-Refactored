@@ -1,7 +1,9 @@
 package cn.crtlprototypestudios.controlui_refactored.client.storage.utils;
 
+import cn.crtlprototypestudios.controlui_refactored.client.data_types.IJsonConvertible;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 import net.fabricmc.loader.api.FabricLoader;
 import org.jetbrains.annotations.Contract;
@@ -10,6 +12,8 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.function.Supplier;
 
 public class ControlUIRefactoredStorage {
     public static final Path MOD_DATA_DIR = FabricLoader.getInstance().getGameDir()
@@ -50,12 +54,12 @@ public class ControlUIRefactoredStorage {
      * @param  filename the name of the file to save the data to
      * @param  relay    a boolean flag indicating whether to relay the data
      */
-    public void saveData(Object data, String filename, boolean relay) {
+    public void saveData(IJsonConvertible data, String filename, boolean relay) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Path filePath = resolveDataFilePath(filename, relay);
         try {
             Files.createDirectories(filePath.getParent());
-            String json = gson.toJson(data);
+            String json = gson.toJson(data.toJsonObject());
             Files.writeString(filePath, json);
         } catch (IOException e) {
             e.printStackTrace();
@@ -72,22 +76,20 @@ public class ControlUIRefactoredStorage {
      * @param <T>       the type of the data
      * @return the loaded data
      */
-    public <T> T loadData(Class<T> dataClass, String filename, boolean relay) {
+    public <T extends IJsonConvertible<T>> T loadData(Class<T> dataClass, String filename, boolean relay, Supplier<T> supplier) {
         Gson gson = new Gson();
         Path filePath = resolveDataFilePath(filename, relay);
         if (Files.exists(filePath)) {
             try {
                 String json = Files.readString(filePath);
-                return gson.fromJson(new JsonReader(Files.newBufferedReader(filePath)), dataClass);
+                JsonObject jsonObject = gson.fromJson(json, JsonObject.class);
+                T instance = supplier.get(); // Get a new instance from the supplier
+                return instance.fromJsonObject(jsonObject); // Use the fromJsonObject method
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        try {
-            return dataClass.newInstance();
-        } catch (InstantiationException | IllegalAccessException e) {
-            throw new RuntimeException("Unable to create instance of data class", e);
-        }
+        return null; // Or handle this case as you see fit
     }
 
     /**
@@ -97,12 +99,12 @@ public class ControlUIRefactoredStorage {
      * @param  filename the name of the file to save the data to
      * @param  relay    a boolean flag indicating whether to relay the data
      */
-    public void saveConfig(Object data, String filename, boolean relay) {
+    public void saveConfig(IJsonConvertible data, String filename, boolean relay) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Path filePath = resolveConfigFilePath(filename, relay);
         try {
             Files.createDirectories(filePath.getParent());
-            String json = gson.toJson(gson.toJsonTree(data));
+            String json = gson.toJson(data.toJsonObject());
             Files.writeString(filePath, json);
         } catch (IOException e) {
             e.printStackTrace();

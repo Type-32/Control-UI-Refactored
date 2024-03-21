@@ -4,7 +4,7 @@ import cn.crtlprototypestudios.controlui_refactored.client.gui.screens.menus.Men
 import cn.crtlprototypestudios.controlui_refactored.client.gui.utils.ScreenStackUtils;
 import cn.crtlprototypestudios.controlui_refactored.client.storage.types.MiningPreset;
 import cn.crtlprototypestudios.controlui_refactored.client.storage.types.MiningPresetType;
-import cn.crtlprototypestudios.controlui_refactored.client.storage.types.MiningPresets;
+import cn.crtlprototypestudios.controlui_refactored.client.storage.types.PresetsData;
 import cn.crtlprototypestudios.controlui_refactored.client.storage.utils.ControlUIRefactoredStorage;
 import cn.crtlprototypestudios.controlui_refactored.client.storage.utils.FileNameReferences;
 import cn.crtlprototypestudios.controlui_refactored.client.storage.utils.ModalStorage;
@@ -30,7 +30,7 @@ public class NewMiningPresetModalScreen extends MenuScreen {
         });
         rootComponent.childById(ButtonComponent.class, "action.create-new-mining-preset").onPress(component -> {
             ControlUIRefactoredStorage storage = new ControlUIRefactoredStorage();
-            MiningPresets data = storage.loadData(MiningPresets.class, FileNameReferences.MINING_PRESETS_FILENAME, false);
+            PresetsData data = storage.loadData(PresetsData.class, FileNameReferences.MINING_PRESETS_FILENAME, false, PresetsData::new);
 
             MiningPreset preset = new MiningPreset(
                 rootComponent.childById(TextBoxComponent.class, "input.preset-name").getText(),
@@ -40,8 +40,8 @@ public class NewMiningPresetModalScreen extends MenuScreen {
                 64
             );
 
-            data.presets.add(preset);
-            storage.saveData(data, FileNameReferences.MINING_PRESETS_FILENAME, true);
+            data.miningPresets.add(preset);
+            storage.saveData(data, FileNameReferences.MINING_PRESETS_FILENAME, false);
             ModalStorage.clearCache();
             ScreenStackUtils.back();
         });
