@@ -1,0 +1,211 @@
+<owo-ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/wisp-forest/owo-lib/1.20/owo-ui.xsd">
+    <components>
+        <flow-layout direction="horizontal">
+            <children>
+                <flow-layout direction="horizontal">
+                    <children>
+                        <item id="preview.preset-first-item-preview">
+                            <stack>minecraft:barrier</stack>
+                            <margins>
+                                <horizontal>5</horizontal>
+                            </margins>
+                        </item>
+                        <flow-layout direction="vertical">
+                            <children>
+                                <label>
+                                    <text>{{preset-name}}</text>
+                                    <horizontal-text-alignment>left</horizontal-text-alignment>
+                                    <vertical-text-alignment>top</vertical-text-alignment>
+                                </label>
+                                <label>
+                                    <text>{{preset-desc}}</text>
+                                    <horizontal-text-alignment>left</horizontal-text-alignment>
+                                    <vertical-text-alignment>bottom</vertical-text-alignment>
+                                    <color>gray</color>
+                                </label>
+                            </children>
+                            <horizontal-alignment>left</horizontal-alignment>
+                            <vertical-alignment>center</vertical-alignment>
+                            <sizing>
+                                <vertical method="content">5</vertical>
+                                <horizontal method="fill">60</horizontal>
+                            </sizing>
+                        </flow-layout>
+                    </children>
+                    <sizing>
+                        <horizontal method="fill">50</horizontal>
+                        <vertical method="fill">100</vertical>
+                    </sizing>
+                    <vertical-alignment>center</vertical-alignment>
+                    <horizontal-alignment>left</horizontal-alignment>
+                </flow-layout>
+                <flow-layout direction="horizontal">
+                    <children>
+                        <button id="action.activate-preset">
+                            <text>+</text>
+                            <tooltip-text>Activate</tooltip-text>
+                            <horizontal-alignment>center</horizontal-alignment>
+                            <renderer>
+                                <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
+                            </renderer>
+                            <sizing>
+                                <vertical method="fill">100</vertical>
+                                <horizontal method="content">5</horizontal>
+                            </sizing>
+                        </button>
+                        <button id="action.edit-preset">
+                            <text>🖋</text>
+                            <tooltip-text>Edit this Preset</tooltip-text>
+                            <horizontal-alignment>center</horizontal-alignment>
+                            <renderer>
+                                <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
+                            </renderer>
+                            <sizing>
+                                <vertical method="fill">100</vertical>
+                                <horizontal method="content">5</horizontal>
+                            </sizing>
+                        </button>
+                        <button id="action.delete-preset">
+                            <text>🗑</text>
+                            <tooltip-text>Activate</tooltip-text>
+                            <horizontal-alignment>center</horizontal-alignment>
+                            <renderer>
+                                <flat color="dark-red" hovered-color="red" disabled-color="black"/>
+                            </renderer>
+                            <sizing>
+                                <vertical method="fill">100</vertical>
+                                <horizontal method="content">5</horizontal>
+                            </sizing>
+                        </button>
+                    </children>
+                    <sizing>
+                        <vertical method="fill">100</vertical>
+                        <horizontal method="fill">50</horizontal>
+                    </sizing>
+                    <horizontal-alignment>right</horizontal-alignment>
+                    <margins>
+                        <right>5</right>
+                    </margins>
+                </flow-layout>
+            </children>
+
+            <sizing>
+                <horizontal method="fill">100</horizontal>
+                <vertical method="fixed">24</vertical>
+            </sizing>
+
+            <horizontal-alignment>left</horizontal-alignment>
+            <vertical-alignment>center</vertical-alignment>
+
+            <surface>
+                <flat>#33000000</flat>
+            </surface>
+        </flow-layout>
+    </components>
+    <templates>
+        <template name="mining-menu-preset-item">
+            <flow-layout direction="horizontal">
+                <children>
+                    <flow-layout direction="horizontal">
+                        <children>
+                            <item id="preview.preset-first-item-preview">
+                                <stack>minecraft:barrier</stack>
+                                <margins>
+                                    <horizontal>5</horizontal>
+                                </margins>
+                            </item>
+                            <flow-layout direction="vertical">
+                                <children>
+                                    <label>
+                                        <text>{{preset-name}}</text>
+                                        <horizontal-text-alignment>left</horizontal-text-alignment>
+                                        <vertical-text-alignment>top</vertical-text-alignment>
+                                    </label>
+                                    <label>
+                                        <text>{{preset-desc}}</text>
+                                        <horizontal-text-alignment>left</horizontal-text-alignment>
+                                        <vertical-text-alignment>bottom</vertical-text-alignment>
+                                        <color>gray</color>
+                                    </label>
+                                </children>
+                                <horizontal-alignment>left</horizontal-alignment>
+                                <vertical-alignment>center</vertical-alignment>
+                                <sizing>
+                                    <vertical method="content">5</vertical>
+                                    <horizontal method="fill">60</horizontal>
+                                </sizing>
+                            </flow-layout>
+                        </children>
+                        <sizing>
+                            <horizontal method="fill">50</horizontal>
+                            <vertical method="fill">100</vertical>
+                        </sizing>
+                        <vertical-alignment>center</vertical-alignment>
+                        <horizontal-alignment>left</horizontal-alignment>
+                    </flow-layout>
+                    <flow-layout direction="horizontal">
+                        <children>
+                            <button id="action.activate-preset">
+                                <text>+</text>
+                                <tooltip-text>Activate</tooltip-text>
+                                <horizontal-alignment>center</horizontal-alignment>
+                                <renderer>
+                                    <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
+                                </renderer>
+                                <sizing>
+                                    <vertical method="fill">100</vertical>
+                                    <horizontal method="content">5</horizontal>
+                                </sizing>
+                            </button>
+                            <button id="action.edit-preset">
+                                <text>🖋</text>
+                                <tooltip-text>Edit this Preset</tooltip-text>
+                                <horizontal-alignment>center</horizontal-alignment>
+                                <renderer>
+                                    <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
+                                </renderer>
+                                <sizing>
+                                    <vertical method="fill">100</vertical>
+                                    <horizontal method="content">5</horizontal>
+                                </sizing>
+                            </button>
+                            <button id="action.delete-preset">
+                                <text>🗑</text>
+                                <tooltip-text>Activate</tooltip-text>
+                                <horizontal-alignment>center</horizontal-alignment>
+                                <renderer>
+                                    <flat color="dark-red" hovered-color="red" disabled-color="black"/>
+                                </renderer>
+                                <sizing>
+                                    <vertical method="fill">100</vertical>
+                                    <horizontal method="content">5</horizontal>
+                                </sizing>
+                            </button>
+                        </children>
+                        <sizing>
+                            <vertical method="fill">100</vertical>
+                            <horizontal method="fill">50</horizontal>
+                        </sizing>
+                        <horizontal-alignment>right</horizontal-alignment>
+                        <margins>
+                            <right>5</right>
+                        </margins>
+                    </flow-layout>
+                </children>
+
+                <sizing>
+                    <horizontal method="fill">100</horizontal>
+                    <vertical method="fixed">24</vertical>
+                </sizing>
+
+                <horizontal-alignment>left</horizontal-alignment>
+                <vertical-alignment>center</vertical-alignment>
+
+                <surface>
+                    <flat>#33000000</flat>
+                </surface>
+            </flow-layout>
+        </template>
+    </templates>
+</owo-ui>

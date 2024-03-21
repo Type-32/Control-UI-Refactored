@@ -18,7 +18,7 @@ public class PresetsData implements IJsonConvertible<PresetsData> {
     public PresetsData(JsonObject json){
         miningPresets = new ArrayList<>();
         PresetsData obj = fromJsonObject(json);
-        miningPresets = obj.miningPresets;
+        miningPresets = new ArrayList<>(obj.miningPresets);
     }
 
     @Override

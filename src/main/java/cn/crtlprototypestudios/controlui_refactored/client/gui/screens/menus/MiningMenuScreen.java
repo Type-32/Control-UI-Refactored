@@ -1,5 +1,6 @@
 package cn.crtlprototypestudios.controlui_refactored.client.gui.screens.menus;
 
+import cn.crtlprototypestudios.controlui_refactored.client.BaritoneWrapper;
 import cn.crtlprototypestudios.controlui_refactored.client.gui.screens.modals.NewMiningPresetModalScreen;
 import cn.crtlprototypestudios.controlui_refactored.client.gui.utils.ScreenStackUtils;
 import cn.crtlprototypestudios.controlui_refactored.client.storage.types.MiningPreset;
@@ -7,10 +8,8 @@ import cn.crtlprototypestudios.controlui_refactored.client.storage.types.Presets
 import cn.crtlprototypestudios.controlui_refactored.client.storage.utils.ControlUIRefactoredStorage;
 import cn.crtlprototypestudios.controlui_refactored.client.storage.utils.FileNameReferences;
 import io.wispforest.owo.ui.component.ButtonComponent;
-import io.wispforest.owo.ui.component.Components;
+import io.wispforest.owo.ui.component.ItemComponent;
 import io.wispforest.owo.ui.container.FlowLayout;
-import io.wispforest.owo.ui.container.StackLayout;
-import net.minecraft.block.Block;
 
 import java.util.Map;
 
@@ -32,27 +31,37 @@ public class MiningMenuScreen extends MenuScreen{
     @Override
     protected void init(){
         super.init();
-        LoadAvailablePresets();
+        loadAvailablePresets();
     }
 
-    public void LoadAvailablePresets(){
+    public void loadAvailablePresets(){
         PresetsData data = storage.loadData(PresetsData.class, FileNameReferences.MINING_PRESETS_FILENAME, false, PresetsData::new);
 
-        StackLayout stackLayout = this.uiAdapter.rootComponent.childById(StackLayout.class, "available-presets-holder");
-        assert stackLayout != null;
-        stackLayout.<StackLayout>configure(component -> {
+        FlowLayout presetsHolder = this.uiAdapter.rootComponent.childById(FlowLayout.class, "available-presets-holder");
+        assert presetsHolder != null;
+        presetsHolder.<FlowLayout>configure(component -> {
             component.clearChildren();
+            if(data == null) return;
             for (MiningPreset preset : data.miningPresets) {
-                FlowLayout presetItem = this.model.expandTemplate(FlowLayout.class, "quick-actions-bar@controlui_refactored:components/active_mining_preset_item", Map.of(
+                FlowLayout presetItem = this.model.expandTemplate(FlowLayout.class, "mining-menu-preset-item@controlui_refactored:components/mining_menu_preset_item", Map.of(
                         "preset-name", preset.getPresetName(),
-                        "preset-description", preset.getPresetDescription()
+                        "preset-desc", preset.getPresetDescription()
                 ));
-                for (Block block : preset.getBlocks()) {
-                    presetItem.childById(FlowLayout.class, "preset-blocks-preview-list").child(
-                        Components.item(block.asItem().getDefaultStack())
-                    );
-                }
+                presetItem.childById(ItemComponent.class, "preview.preset-first-item-preview").stack(preset.getBlocks().get(0).asItem().getDefaultStack());
                 component.child(presetItem);
+                presetItem.childById(ButtonComponent.class, "action.edit-preset").onPress(component1 -> {
+                    ScreenStackUtils.to(new NewMiningPresetModalScreen(preset));
+                });
+                presetItem.childById(ButtonComponent.class, "action.delete-preset").onPress(component1 -> {
+                    data.miningPresets.remove(preset);
+                    storage.saveData(data, FileNameReferences.MINING_PRESETS_FILENAME, false);
+                    loadAvailablePresets();
+                });
+                presetItem.childById(ButtonComponent.class, "action.activate-preset").onPress(component1 -> {
+                    System.out.println(preset.toCommand());
+                    BaritoneWrapper.getInstance().getCommandManager().execute(preset.toCommand());
+                    ScreenStackUtils.exit();
+                });
             }
         });
     }

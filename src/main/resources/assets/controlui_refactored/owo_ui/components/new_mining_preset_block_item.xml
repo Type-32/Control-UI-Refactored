@@ -6,7 +6,7 @@
                 <flow-layout direction="horizontal">
                     <children>
                         <item id="preview.mining-preset-block-item">
-                            <stack>minecraft:oak_log</stack>
+                            <stack>minecraft:barrier</stack>
                         </item>
                         <label>
                             <text>{{block-name}}</text>
@@ -19,17 +19,17 @@
                     </children>
                     <horizontal-alignment>left</horizontal-alignment>
                     <sizing>
-                        <horizontal method="fill">75</horizontal>
+                        <horizontal method="fill">85</horizontal>
                     </sizing>
                     <gap>5</gap>
                 </flow-layout>
                 <button id="action.remove-new-mining-preset-block-item">
-                    <text>Remove</text>
+                    <text>🗑</text>
                     <renderer>
                         <flat color="dark-red" hovered-color="red" disabled-color="black"/>
                     </renderer>
                     <sizing>
-                        <horizontal method="fill">25</horizontal>
+                        <horizontal method="fill">15</horizontal>
                         <vertical method="fill">100</vertical>
                     </sizing>
                     <horizontal-alignment>center</horizontal-alignment>
@@ -69,17 +69,17 @@
                         </children>
                         <horizontal-alignment>left</horizontal-alignment>
                         <sizing>
-                            <horizontal method="fill">75</horizontal>
+                            <horizontal method="fill">85</horizontal>
                         </sizing>
                         <gap>5</gap>
                     </flow-layout>
                     <button id="action.remove-new-mining-preset-block-item">
-                        <text>Remove</text>
+                        <text>🗑</text>
                         <renderer>
                             <flat color="dark-red" hovered-color="red" disabled-color="black"/>
                         </renderer>
                         <sizing>
-                            <horizontal method="fill">25</horizontal>
+                            <horizontal method="fill">15</horizontal>
                             <vertical method="fill">100</vertical>
                         </sizing>
                         <horizontal-alignment>center</horizontal-alignment>

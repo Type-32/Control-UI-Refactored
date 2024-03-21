@@ -5,9 +5,7 @@ import cn.crtlprototypestudios.controlui_refactored.client.storage.utils.ModalSt
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 
 import java.util.ArrayList;
 
@@ -103,7 +101,7 @@ public class MiningPreset implements IJsonConvertible<MiningPreset> {
     private String toIdentifierList(ArrayList<Block> blocks){
         String identifierList = "";
         for (Block block : blocks) {
-            identifierList += block.getLootTableId().toString() + " ";
+            identifierList += block.getLootTableId().toString().replaceAll("blocks/", "") + " ";
         }
         return identifierList;
     }
@@ -133,6 +131,14 @@ public class MiningPreset implements IJsonConvertible<MiningPreset> {
                 ids.add(ModalStorage.cachedBlocksRegistry.get(ModalStorage.cachedBlocksIdentifiers.indexOf(id.getAsString())));
         }
         return new MiningPreset(json.get(JSON_PRESET_NAME).getAsString(), json.get(JSON_PRESET_DESCRIPTION).getAsString(), MiningPresetType.valueOf(json.get(JSON_PRESET_TYPE).getAsString()), ids, json.get(JSON_AMOUNT).getAsInt());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MiningPreset that = (MiningPreset) o;
+        return amount == that.amount && presetName.equals(that.presetName) && presetDescription.equals(that.presetDescription) && presetType == that.presetType && blocks.equals(that.blocks);
     }
 
     private static final String JSON_PRESET_NAME = "presetName";

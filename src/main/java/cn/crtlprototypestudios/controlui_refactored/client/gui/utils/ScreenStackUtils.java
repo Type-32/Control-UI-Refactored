@@ -40,6 +40,10 @@ public class ScreenStackUtils {
     public static void clear() {
         screens.clear();
     }
+    public static void exit(){
+        clear();
+        MinecraftClient.getInstance().setScreen(null);
+    }
 
     public static MenuScreen getCurrent() {
         if (screens.size() <= 0) return null;
