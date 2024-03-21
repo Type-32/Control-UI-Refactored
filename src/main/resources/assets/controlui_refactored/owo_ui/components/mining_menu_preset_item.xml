@@ -85,7 +85,7 @@
                     </sizing>
                     <horizontal-alignment>right</horizontal-alignment>
                     <margins>
-                        <right>5</right>
+                        <right>0</right>
                     </margins>
                 </flow-layout>
             </children>
@@ -189,7 +189,7 @@
                         </sizing>
                         <horizontal-alignment>right</horizontal-alignment>
                         <margins>
-                            <right>5</right>
+                            <right>0</right>
                         </margins>
                     </flow-layout>
                 </children>

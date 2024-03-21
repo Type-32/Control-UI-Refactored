@@ -32,6 +32,7 @@ public class MenuScreen extends BaseUIModelScreen<FlowLayout> {
     protected void init(){
         super.init();
         if (implementQuickActionBar) InitializeQuickActionsBar();
+        InitializeProcessUI();
     }
 
     @Override
@@ -88,5 +89,11 @@ public class MenuScreen extends BaseUIModelScreen<FlowLayout> {
                 System.out.println("[Control UI] Switch to Main Menu");
             });
         }
+    }
+    public void InitializeProcessUI(){
+        if (this.uiAdapter == null) return;
+        this.uiAdapter.rootComponent.child(this.model.expandTemplate(FlowLayout.class, "processes-info@controlui_refactored:components/processes_info", Map.of(
+
+        )));
     }
 }

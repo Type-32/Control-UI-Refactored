@@ -1,12 +1,12 @@
 <owo-ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/wisp-forest/owo-lib/1.20/owo-ui.xsd">
     <components>
-        <flow-layout direction="horizontal">
+        <quick-actions-bar-container>
             <children>
                 <flow-layout direction="horizontal">
                     <children>
                         <button id="action.home-menu">
-                            <text>Home</text>
+                            <text>Back</text>
                             <horizontal-alignment>left</horizontal-alignment>
                             <renderer>
                                 <flat color="#00000000" hovered-color="#77afafaf" disabled-color="black"/>
@@ -25,16 +25,10 @@
                 <flow-layout direction="vertical">
                     <children>
                         <label>
-                            <text>Quick Actions</text>
-                            <horizontal-text-alignment>center</horizontal-text-alignment>
-                            <vertical-text-alignment>center</vertical-text-alignment>
-                            <color>gray</color>
-                        </label>
-                        <label>
                             <text>{{current-menu}}</text>
                             <horizontal-text-alignment>center</horizontal-text-alignment>
                             <vertical-text-alignment>center</vertical-text-alignment>
-                            <color>light-purple</color>
+                            <color>white</color>
                             <shadow>true</shadow>
                         </label>
                     </children>
@@ -45,43 +39,49 @@
 
                     <sizing>
                         <horizontal method="content">10</horizontal>
-                        <vertical method="fill">100</vertical>
+                        <vertical method="content">10</vertical>
                     </sizing>
 
                     <surface>
-                        <flat>#141414bf</flat>
+                        <flat>#00000000</flat>
                     </surface>
                 </flow-layout>
                 <flow-layout direction="horizontal">
                     <children>
                         <button id="action.pause-all">
-                            <text>Pause</text>
+                            <text>⏸</text>
+                            <tooltip-text>Pause All Baritone Actions</tooltip-text>
                             <horizontal-alignment>right</horizontal-alignment>
                             <renderer>
-                                <flat color="#141414bf" hovered-color="#77afafaf" disabled-color="black"/>
+                                <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
                             </renderer>
                             <sizing>
                                 <vertical method="fill">100</vertical>
+                                <horizontal method="content">5</horizontal>
                             </sizing>
                         </button>
                         <button id="action.resume-all">
-                            <text>Resume</text>
+                            <text>⏵</text>
+                            <tooltip-text>Resume All Baritone Actions</tooltip-text>
                             <horizontal-alignment>right</horizontal-alignment>
                             <renderer>
-                                <flat color="#141414bf" hovered-color="#77afafaf" disabled-color="black"/>
+                                <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
                             </renderer>
                             <sizing>
                                 <vertical method="fill">100</vertical>
+                                <horizontal method="content">5</horizontal>
                             </sizing>
                         </button>
                         <button id="action.stop-all">
-                            <text>Stop</text>
+                            <text>⏹</text>
+                            <tooltip-text>Stop All Baritone Actions</tooltip-text>
                             <horizontal-alignment>right</horizontal-alignment>
                             <renderer>
-                                <flat color="red" hovered-color="#77afafaf" disabled-color="black"/>
+                                <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
                             </renderer>
                             <sizing>
                                 <vertical method="fill">100</vertical>
+                                <horizontal method="content">5</horizontal>
                             </sizing>
                         </button>
                     </children>
@@ -90,19 +90,20 @@
                     </sizing>
                     <horizontal-alignment>right</horizontal-alignment>
                     <vertical-alignment>center</vertical-alignment>
+                    <gap>
+                        5
+                    </gap>
                 </flow-layout>
             </children>
 
-            <positioning type="relative">50,1</positioning>
-
             <sizing>
                 <horizontal method="fill">100</horizontal>
-                <vertical method="fixed">22</vertical>
+                <vertical method="fixed">18</vertical>
             </sizing>
 
             <horizontal-alignment>center</horizontal-alignment>
             <vertical-alignment>top</vertical-alignment>
-        </flow-layout>
+        </quick-actions-bar-container>
     </components>
     <templates>
         <template name="quick-actions-bar">
@@ -162,6 +163,7 @@
                                 </renderer>
                                 <sizing>
                                     <vertical method="fill">100</vertical>
+                                    <horizontal method="content">5</horizontal>
                                 </sizing>
                             </button>
                             <button id="action.resume-all">
@@ -173,6 +175,7 @@
                                 </renderer>
                                 <sizing>
                                     <vertical method="fill">100</vertical>
+                                    <horizontal method="content">5</horizontal>
                                 </sizing>
                             </button>
                             <button id="action.stop-all">
@@ -184,6 +187,7 @@
                                 </renderer>
                                 <sizing>
                                     <vertical method="fill">100</vertical>
+                                    <horizontal method="content">5</horizontal>
                                 </sizing>
                             </button>
                         </children>
