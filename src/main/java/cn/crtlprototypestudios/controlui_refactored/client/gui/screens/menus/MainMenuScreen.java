@@ -26,6 +26,10 @@ public class MainMenuScreen extends MenuScreen {
         rootComponent.childById(ButtonComponent.class, "menu.commands").onPress(buttonComponent -> {
             System.out.println("[Control UI] Switch to Commands Menu");
         });
+        rootComponent.childById(ButtonComponent.class, "menu.construction").onPress(buttonComponent -> {
+            System.out.println("[Control UI] Switch to Commands Menu");
+            ScreenStackUtils.to(new ConstructionMenuScreen());
+        });
         rootComponent.childById(ButtonComponent.class, "menu.waypoints").onPress(buttonComponent -> {
             System.out.println("[Control UI] Switch to Waypoints Menu");
         });

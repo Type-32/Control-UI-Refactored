@@ -28,6 +28,15 @@
                                 <horizontal method="fill">20</horizontal>
                             </sizing>
                         </button>
+                        <button id="menu.construction">
+                            <text>Construction</text>
+                            <renderer>
+                                <flat color="#77000000" hovered-color="#77afafaf" disabled-color="black"/>
+                            </renderer>
+                            <sizing>
+                                <horizontal method="fill">20</horizontal>
+                            </sizing>
+                        </button>
                         <button id="menu.waypoints">
                             <text>Waypoints</text>
                             <renderer>

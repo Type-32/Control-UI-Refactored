@@ -9,7 +9,61 @@
 
                 <flow-layout direction="horizontal">
                     <children>
-
+                        <flow-layout direction="vertical">
+                            <children>
+                                <flow-layout direction="horizontal">
+                                    <children>
+                                        <label>
+                                            <text>Selections</text>
+                                            <sizing>
+                                                <horizontal method="fill">80</horizontal>
+                                            </sizing>
+                                            <shadow>true</shadow>
+                                        </label>
+                                        <button>
+                                            <text>+</text>
+                                            <sizing>
+                                                <horizontal method="fill">20</horizontal>
+                                            </sizing>
+                                            <renderer>
+                                                <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
+                                            </renderer>
+                                            <horizontal-alignment>right</horizontal-alignment>
+                                            <vertical-alignment>center</vertical-alignment>
+                                        </button>
+                                    </children>
+                                    <vertical-alignment>center</vertical-alignment>
+                                    <sizing>
+                                        <horizontal method="fill">100</horizontal>
+                                    </sizing>
+                                    <padding><vertical>5</vertical></padding>
+                                </flow-layout>
+                                <scroll direction="vertical">
+                                    <flow-layout direction="vertical" id="selection-area-item-holder">
+                                        <children/>
+                                        <sizing>
+                                            <horizontal method="fill">100</horizontal>
+                                            <vertical method="fill">100</vertical>
+                                        </sizing>
+                                        <surface>
+                                            <flat>#50000000</flat>
+                                        </surface>
+                                        <padding>
+                                            <all>5</all>
+                                        </padding>
+                                        <gap>5</gap>
+                                    </flow-layout>
+                                    <sizing>
+                                        <horizontal method="fill">100</horizontal>
+                                        <vertical method="fill">90</vertical>
+                                    </sizing>
+                                </scroll>
+                            </children>
+                            <sizing>
+                                <horizontal method="fill">100</horizontal>
+                            </sizing>
+                            <horizontal-alignment>left</horizontal-alignment>
+                        </flow-layout>
                     </children>
 
                     <surface>
@@ -28,7 +82,6 @@
                     </padding>
 
                     <vertical-alignment>center</vertical-alignment>
-                    <horizontal-alignment>center</horizontal-alignment>
 
                     <positioning type="relative">50,50</positioning>
                 </flow-layout>
