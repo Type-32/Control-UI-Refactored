@@ -71,6 +71,16 @@ public class SelectionArea {
         return pos2.getY() - pos1.getY() + 1;
     }
 
+
+    /**
+     * Fills the selection area based on the specified fill type and parameters.
+     *
+     * @param fillType The type of fill action to perform (e.g., Replace, Cylinder, Sphere).
+     * @param replacing List of blocks to replace in the selection.
+     * @param replaceWith The block to replace the specified blocks with.
+     * @param shape The facing axis for cylindrical fills (nullable if fill type is not Cylindrical).
+     * @return The updated selection area after the fill action.
+     */
     public ISelection basicFillAction(SelectionFillType fillType, List<Block> replacing, Block replaceWith, Direction.Axis shape){
         // Code Disclaimer: I do not own the major parts of this code, as some are copied directly from the Baritone Mod by Leijurv; I am not responsible for any issues that arise from using these parts of code.
 
@@ -141,19 +151,46 @@ public class SelectionArea {
         return sel;
     }
 
+    /**
+     * Fills the entire area of a selection with a specified block, replacing all existing blocks.
+     *
+     * @param fillingBlock The block to fill the selection area with.
+     * @return The updated selection area after the fill action.
+     */
     public ISelection fillArea(Block fillingBlock){
         return basicFillAction(SelectionFillType.Replace, null, fillingBlock, null);
     }
 
+    /**
+     * Fills a selection area with a specified block in a specific shape based on the fill type.
+     *
+     * @param fillType The shape type to fill the selection with. Replace and Default types are invalid.
+     * @param fillingBlock The block to use for filling the selection.
+     * @param shapeFacingAxis The axis the shape is aligned with, required for cylindrical shapes.
+     * @return The updated selection area after the fill action.
+     * @throws Exception if the fill type is Replace or Default, which are invalid for this method.
+     */
     public ISelection fillShape(SelectionFillType fillType, Block fillingBlock, Direction.Axis shapeFacingAxis) throws Exception {
         if (fillType == SelectionFillType.Replace || fillType == SelectionFillType.Default) throw new Exception("Invalid Fill Type for filling a Shape in the Selection");
         return basicFillAction(fillType, null, fillingBlock, shapeFacingAxis);
     }
 
+    /**
+     * Replaces specific blocks in a selection area with another block.
+     *
+     * @param replacingBlock The block to replace the specified blocks with.
+     * @param replacedBlocks The list of blocks to be replaced in the selection.
+     * @return The updated selection area after the replacement.
+     */
     public ISelection replaceArea(Block replacingBlock, List<Block> replacedBlocks){
         return basicFillAction(SelectionFillType.Replace, replacedBlocks, replacingBlock, null);
     }
 
+    /**
+     * Clears the entire area of a selection by replacing all blocks within it with air.
+     *
+     * @return The updated selection area after clearing it.
+     */
     public ISelection clearArea(){
         return basicFillAction(SelectionFillType.Replace, null, Blocks.AIR, null);
     }
