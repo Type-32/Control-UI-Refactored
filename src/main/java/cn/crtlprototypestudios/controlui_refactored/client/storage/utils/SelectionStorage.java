@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class SelectionStorage {
     public static ArrayList<SelectionArea> selections = new ArrayList<>();
+    public static SelectionArea clipboard;
 
     public SelectionStorage(){
         selections = new ArrayList<>();

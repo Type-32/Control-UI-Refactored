@@ -1,7 +1,7 @@
 package cn.crtlprototypestudios.controlui_refactored.client.storage.types;
 
 import cn.crtlprototypestudios.controlui_refactored.client.data_types.IJsonConvertible;
-import cn.crtlprototypestudios.controlui_refactored.client.storage.utils.ModalStorage;
+import cn.crtlprototypestudios.controlui_refactored.client.storage.utils.BlocksSelectionModalStorage;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -125,10 +125,10 @@ public class MiningPreset implements IJsonConvertible<MiningPreset> {
     public MiningPreset fromJsonObject(JsonObject json) {
         ArrayList<Block> ids = new ArrayList<>();
 
-        ModalStorage.getAllRegisteredBlocks();
+        BlocksSelectionModalStorage.refreshRegistry();
         for(JsonElement id : json.getAsJsonArray(JSON_BLOCKS).asList()){
-            if (ModalStorage.cachedBlocksIdentifiers.contains(id.getAsString()))
-                ids.add(ModalStorage.cachedBlocksRegistry.get(ModalStorage.cachedBlocksIdentifiers.indexOf(id.getAsString())));
+            if (BlocksSelectionModalStorage.cachedBlocksIdentifiers.contains(id.getAsString()))
+                ids.add(BlocksSelectionModalStorage.cachedBlocksRegistry.get(BlocksSelectionModalStorage.cachedBlocksIdentifiers.indexOf(id.getAsString())));
         }
         return new MiningPreset(json.get(JSON_PRESET_NAME).getAsString(), json.get(JSON_PRESET_DESCRIPTION).getAsString(), MiningPresetType.valueOf(json.get(JSON_PRESET_TYPE).getAsString()), ids, json.get(JSON_AMOUNT).getAsInt());
     }

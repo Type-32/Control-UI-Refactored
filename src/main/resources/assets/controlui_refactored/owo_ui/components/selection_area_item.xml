@@ -361,5 +361,78 @@
                 </sizing>
             </flow-layout>
         </template>
+        <template name="selection-area-item-choices">
+            <flow-layout direction="horizontal">
+                <children>
+                    <button id="operation.fill">
+                        <text>Fill</text>
+                        <tooltip-text>Fill the area with a block</tooltip-text>
+                        <horizontal-alignment>center</horizontal-alignment>
+                        <renderer>
+                            <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
+                        </renderer>
+                        <sizing>
+                            <vertical method="fill">100</vertical>
+                            <horizontal method="fill">20</horizontal>
+                        </sizing>
+                    </button>
+                    <button id="operation.replace">
+                        <text>Replace</text>
+                        <tooltip-text>Replace the blocks in the area with another block</tooltip-text>
+                        <horizontal-alignment>center</horizontal-alignment>
+                        <renderer>
+                            <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
+                        </renderer>
+                        <sizing>
+                            <vertical method="fill">100</vertical>
+                            <horizontal method="fill">20</horizontal>
+                        </sizing>
+                    </button>
+                    <button id="operation.clear">
+                        <text>Clear</text>
+                        <tooltip-text>Clear out the entire area</tooltip-text>
+                        <horizontal-alignment>center</horizontal-alignment>
+                        <renderer>
+                            <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
+                        </renderer>
+                        <sizing>
+                            <vertical method="fill">100</vertical>
+                            <horizontal method="fill">20</horizontal>
+                        </sizing>
+                    </button>
+                    <button id="operation.edit">
+                        <text>Edit</text>
+                        <tooltip-text>Edit the area selection</tooltip-text>
+                        <horizontal-alignment>center</horizontal-alignment>
+                        <renderer>
+                            <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
+                        </renderer>
+                        <sizing>
+                            <vertical method="fill">100</vertical>
+                            <horizontal method="fill">20</horizontal>
+                        </sizing>
+                    </button>
+                    <button id="operation.back">
+                        <text>Back</text>
+                        <tooltip-text>Back</tooltip-text>
+                        <horizontal-alignment>center</horizontal-alignment>
+                        <renderer>
+                            <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
+                        </renderer>
+                        <sizing>
+                            <vertical method="fill">100</vertical>
+                            <horizontal method="fill">20</horizontal>
+                        </sizing>
+                    </button>
+                </children>
+                <sizing>
+                    <horizontal method="fill">100</horizontal>
+                    <vertical method="fill">100</vertical>
+                </sizing>
+                <surface>
+                    <outline>white</outline>
+                </surface>
+            </flow-layout>
+        </template>
     </templates>
 </owo-ui>

@@ -47,6 +47,7 @@ public class MiningMenuScreen extends MenuScreen{
                         "preset-name", preset.getPresetName(),
                         "preset-desc", preset.getPresetDescription()
                 ));
+                System.out.println(preset.getPresetName());
                 presetItem.childById(ItemComponent.class, "preview.preset-first-item-preview").stack(preset.getBlocks().get(0).asItem().getDefaultStack());
                 component.child(presetItem);
                 presetItem.childById(ButtonComponent.class, "action.edit-preset").onPress(component1 -> {

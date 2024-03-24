@@ -89,13 +89,15 @@ public class SelectionArea {
             sel = addToBaritone();
         }
 
-        final BlockOptionalMeta replaceWithMeta = new BlockOptionalMeta(replaceWith); // Not Nullable; This is used to replace every block in the selection.
+        System.out.println(sel.toString());
+
+        BlockOptionalMeta replaceWithMeta = new BlockOptionalMeta(replaceWith); // Not Nullable; This is used to replace every block in the selection.
         final BlockOptionalMetaLookup replaces; // Is Nullable; If this is null, it won't look to replace any block in the selection.
         final Direction.Axis alignment; // Is Nullable When Fill Type is not Cylindrical; This determines the filled cylinder's facing axis.
 
         if (fillType == SelectionFillType.Replace) { // If the Fill Type or mode is for replacing desired blocks in the selection, this scope looks for the desired blocks.
             List<BlockOptionalMeta> replacesList = new ArrayList<>();
-            List<Block> temp = new ArrayList<>(replacing);
+            List<Block> temp = new ArrayList<>(replacing == null ? new ArrayList<>() : replacing);
             replacesList.add(replaceWithMeta);
             while (!temp.isEmpty())
                 replacesList.add(new BlockOptionalMeta(temp.remove(0)));
@@ -143,10 +145,17 @@ public class SelectionArea {
             }
         };
 
+        System.out.println(replaces);
+        System.out.println(replaceWithMeta);
+
         ISchematic schematic = create.apply(new FillSchematic(size.getX(), size.getY(), size.getZ(), replaceWithMeta));
         composite.put(schematic, min.x - origin.x, min.y - origin.y, min.z - origin.z);
 
+        System.out.println(composite);
+
         BaritoneWrapper.getInstance().getBuilderProcess().build("Fill", composite, origin);
+
+        System.out.printf("%s %s %s / %s / ", size.getX(), size.getY(), size.getZ(), composite.toString(), schematic);
 
         return sel;
     }
@@ -158,7 +167,7 @@ public class SelectionArea {
      * @return The updated selection area after the fill action.
      */
     public ISelection fillArea(Block fillingBlock){
-        return basicFillAction(SelectionFillType.Replace, null, fillingBlock, null);
+        return basicFillAction(SelectionFillType.Default, null, fillingBlock, null);
     }
 
     /**
@@ -171,7 +180,7 @@ public class SelectionArea {
      * @throws Exception if the fill type is Replace or Default, which are invalid for this method.
      */
     public ISelection fillShape(SelectionFillType fillType, Block fillingBlock, Direction.Axis shapeFacingAxis) throws Exception {
-        if (fillType == SelectionFillType.Replace || fillType == SelectionFillType.Default) throw new Exception("Invalid Fill Type for filling a Shape in the Selection");
+        if (fillType == SelectionFillType.Default) throw new Exception("Invalid Fill Type for filling a Shape in the Selection");
         return basicFillAction(fillType, null, fillingBlock, shapeFacingAxis);
     }
 
@@ -192,7 +201,7 @@ public class SelectionArea {
      * @return The updated selection area after clearing it.
      */
     public ISelection clearArea(){
-        return basicFillAction(SelectionFillType.Replace, null, Blocks.AIR, null);
+        return basicFillAction(SelectionFillType.Default, null, Blocks.AIR, null);
     }
 
     public boolean isValid(){

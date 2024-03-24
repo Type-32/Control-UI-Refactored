@@ -92,8 +92,6 @@ public class MenuScreen extends BaseUIModelScreen<FlowLayout> {
     }
     public void InitializeProcessUI(){
         if (this.uiAdapter == null) return;
-        this.uiAdapter.rootComponent.child(this.model.expandTemplate(FlowLayout.class, "processes-info@controlui_refactored:components/processes_info", Map.of(
-
-        )));
+//        this.uiAdapter.rootComponent.child(this.model.expandTemplate(FlowLayout.class, "processes-info@controlui_refactored:components/processes_info", Map.of()));
     }
 }

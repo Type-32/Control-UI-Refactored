@@ -8,7 +8,7 @@ import com.google.gson.JsonObject;
 import java.util.ArrayList;
 
 public class PresetsData implements IJsonConvertible<PresetsData> {
-    public ArrayList<MiningPreset> miningPresets = new ArrayList<>();
+    public ArrayList<MiningPreset> miningPresets;
     public PresetsData(){
         miningPresets = new ArrayList<>();
     }

@@ -7,7 +7,7 @@ import cn.crtlprototypestudios.controlui_refactored.client.storage.types.MiningP
 import cn.crtlprototypestudios.controlui_refactored.client.storage.types.PresetsData;
 import cn.crtlprototypestudios.controlui_refactored.client.storage.utils.ControlUIRefactoredStorage;
 import cn.crtlprototypestudios.controlui_refactored.client.storage.utils.FileNameReferences;
-import cn.crtlprototypestudios.controlui_refactored.client.storage.utils.ModalStorage;
+import cn.crtlprototypestudios.controlui_refactored.client.storage.utils.MiningModalStorage;
 import io.wispforest.owo.ui.component.ButtonComponent;
 import io.wispforest.owo.ui.component.ItemComponent;
 import io.wispforest.owo.ui.component.TextBoxComponent;
@@ -26,8 +26,8 @@ public class NewMiningPresetModalScreen extends MenuScreen {
     }
     public NewMiningPresetModalScreen(MiningPreset preset) {
         this();
-        ModalStorage.miningPreset = preset;
-        ModalStorage.blocksSelection = ModalStorage.miningPreset.getBlocks();
+        MiningModalStorage.miningPreset = preset;
+//        BlocksSelectionModalStorage.blocksSelection = MiningModalStorage.miningPreset.getBlocks();
         isEditing = true;
     }
 
@@ -37,13 +37,13 @@ public class NewMiningPresetModalScreen extends MenuScreen {
         ButtonComponent saveButton = rootComponent.childById(ButtonComponent.class, "action.create-new-mining-preset");
 
         if(isEditing){
-            rootComponent.childById(TextBoxComponent.class, "input.preset-name").setText(ModalStorage.miningPreset.getPresetName());
-            rootComponent.childById(TextBoxComponent.class, "input.preset-desc").setText(ModalStorage.miningPreset.getPresetDescription());
+            rootComponent.childById(TextBoxComponent.class, "input.preset-name").setText(MiningModalStorage.miningPreset.getPresetName());
+            rootComponent.childById(TextBoxComponent.class, "input.preset-desc").setText(MiningModalStorage.miningPreset.getPresetDescription());
 
             ControlUIRefactoredStorage storage = new ControlUIRefactoredStorage();
             PresetsData data = storage.loadData(PresetsData.class, FileNameReferences.MINING_PRESETS_FILENAME, false, PresetsData::new);
 
-            index = data.miningPresets.indexOf(ModalStorage.miningPreset);
+            index = data.miningPresets.indexOf(MiningModalStorage.miningPreset);
 
             saveButton.setMessage(Text.literal("Edit"));
         }
@@ -59,24 +59,30 @@ public class NewMiningPresetModalScreen extends MenuScreen {
             if(data == null)
                 data = new PresetsData();
 
-            ModalStorage.miningPreset.setPresetName(rootComponent.childById(TextBoxComponent.class, "input.preset-name").getText());
-            ModalStorage.miningPreset.setPresetDescription(rootComponent.childById(TextBoxComponent.class, "input.preset-desc").getText());
-            ModalStorage.miningPreset.setPresetType(MiningPresetType.ArrayBased);
-            ModalStorage.miningPreset.setAmount(64);
+            MiningModalStorage.miningPreset.setPresetName(rootComponent.childById(TextBoxComponent.class, "input.preset-name").getText());
+            MiningModalStorage.miningPreset.setPresetDescription(rootComponent.childById(TextBoxComponent.class, "input.preset-desc").getText());
+            MiningModalStorage.miningPreset.setPresetType(MiningPresetType.ArrayBased);
+            MiningModalStorage.miningPreset.setAmount(64);
 
             if(isEditing) {
-                data.miningPresets.set(index, ModalStorage.miningPreset);
+                data.miningPresets.set(index, MiningModalStorage.miningPreset);
             }else{
-                data.miningPresets.add(ModalStorage.miningPreset);
+                data.miningPresets.add(MiningModalStorage.miningPreset);
             }
 
             storage.saveData(data, FileNameReferences.MINING_PRESETS_FILENAME, false);
-            ModalStorage.clearCache();
+            MiningModalStorage.clearCache();
             ScreenStackUtils.back();
         });
 
+        BlocksSelectionModalScreen modal = new BlocksSelectionModalScreen(true, MiningModalStorage.miningPreset.getBlocks(),
+            result -> {
+                if(result != null)
+                    MiningModalStorage.miningPreset.getBlocks().addAll(result);
+            }
+        );
         rootComponent.childById(ButtonComponent.class, "action.add-block-to-preset").onPress(component -> {
-            ScreenStackUtils.to(new BlocksSelectionModalScreen());
+            ScreenStackUtils.to(modal);
         });
     }
 
@@ -96,13 +102,13 @@ public class NewMiningPresetModalScreen extends MenuScreen {
         blockPreviewHolder.clearChildren();
 
         blockPreviewHolder.<FlowLayout>configure(component -> {
-            if(ModalStorage.miningPreset == null)
-                ModalStorage.miningPreset = new MiningPreset("", "", MiningPresetType.ArrayBased, new ArrayList<>(), 64);
+            if(MiningModalStorage.miningPreset == null)
+                MiningModalStorage.miningPreset = new MiningPreset("", "", MiningPresetType.ArrayBased, new ArrayList<>(), 64);
 
-            if (!ModalStorage.blocksSelection.isEmpty()) ModalStorage.miningPreset.setBlocks(ModalStorage.blocksSelection);
-            else return;
+//            if (!MiningModalStorage.blocksSelection.isEmpty()) MiningModalStorage.miningPreset.setBlocks(MiningModalStorage.blocksSelection);
+//            else return;
 
-            for (Block block : ModalStorage.miningPreset.getBlocks()) {
+            for (Block block : MiningModalStorage.miningPreset.getBlocks()) {
 
                 FlowLayout blockItemPreview = component.child(this.model.expandTemplate(FlowLayout.class, "new_mining_preset_block_item@controlui_refactored:components/new_mining_preset_block_item", Map.of(
                         "block-name", block.asItem().getDefaultStack().getName().getString()
@@ -112,7 +118,7 @@ public class NewMiningPresetModalScreen extends MenuScreen {
 
                 blockItemPreview.childById(ButtonComponent.class, "action.remove-new-mining-preset-block-item").onPress(button -> {
                     System.out.println("Remove Block: " + block.asItem().getDefaultStack().getName().getString());
-                    ModalStorage.blocksSelection.remove(block);
+                    MiningModalStorage.miningPreset.getBlocks().remove(block);
                     injectSelectedBlockPreviewTemplate();
                 });
             }
