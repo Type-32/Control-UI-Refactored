@@ -6,6 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PresetsData implements IJsonConvertible<PresetsData> {
     public ArrayList<MiningPreset> miningPresets;
@@ -19,6 +20,7 @@ public class PresetsData implements IJsonConvertible<PresetsData> {
         miningPresets = new ArrayList<>();
         PresetsData obj = fromJsonObject(json);
         miningPresets = new ArrayList<>(obj.miningPresets);
+//        Arrays.toString(miningPresets.toArray());
     }
 
     @Override

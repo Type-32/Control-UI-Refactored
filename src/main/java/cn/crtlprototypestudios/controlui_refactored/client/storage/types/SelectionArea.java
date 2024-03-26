@@ -1,5 +1,6 @@
 package cn.crtlprototypestudios.controlui_refactored.client.storage.types;
 
+import baritone.api.cache.ICachedRegion;
 import baritone.api.schematic.*;
 import baritone.api.schematic.mask.shape.CylinderMask;
 import baritone.api.schematic.mask.shape.SphereMask;
@@ -7,24 +8,39 @@ import baritone.api.selection.ISelection;
 import baritone.api.utils.BetterBlockPos;
 import baritone.api.utils.BlockOptionalMeta;
 import baritone.api.utils.BlockOptionalMetaLookup;
+import baritone.api.utils.IPlayerContext;
 import cn.crtlprototypestudios.controlui_refactored.client.BaritoneWrapper;
+import cn.crtlprototypestudios.controlui_refactored.client.storage.utils.SelectionStorage;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3i;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.UnaryOperator;
+
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.ChunkSection;
+import net.minecraft.world.chunk.ChunkStatus;
 
 public class SelectionArea {
     private BlockPos pos1, pos2;
+    private ChunkPos chunkPos;
+    private ICachedRegion cachedRegion;
 
     public SelectionArea(BlockPos pos1, BlockPos pos2){
         this.pos1 = pos1;
         this.pos2 = pos2;
+        chunkPos = new ChunkPos(pos1);
+        cachedRegion = BaritoneWrapper.getInstance().getWorldProvider().getCurrentWorld().getCachedWorld().getRegion(pos1.getX() >> 9, pos1.getZ() >> 9);
+        MinecraftClient.getInstance().world.getChunkManager().getChunk(pos1.getX() >> 4, pos1.getZ() >> 4);
     }
 
     public SelectionArea(ISelection selection){
@@ -202,6 +218,134 @@ public class SelectionArea {
      */
     public ISelection clearArea(){
         return basicFillAction(SelectionFillType.Default, null, Blocks.AIR, null);
+    }
+
+    public SelectionClipboard getAreaAsSchematic(BlockPos setPosition){
+//        BaritoneWrapper.getInstance().getWorldProvider().getCurrentWorld().
+        IPlayerContext ctx = BaritoneWrapper.getInstance().getPlayerContext();
+        BetterBlockPos playerPos = ctx.viewerPos();
+        BetterBlockPos pos = setPosition != null ? new BetterBlockPos(setPosition) : playerPos;
+
+        ISelection selection = getFromBaritone();
+        if(selection == null){
+            selection = addToBaritone();
+        }
+
+        BetterBlockPos origin = selection.min();
+        CompositeSchematic composite = new CompositeSchematic(0, 0, 0);
+
+        BetterBlockPos min = selection.min();
+        origin = new BetterBlockPos(
+                Math.min(origin.x, min.x),
+                Math.min(origin.y, min.y),
+                Math.min(origin.z, min.z)
+        );
+
+        Vec3i size = selection.size();
+        BlockState[][][] blockstates = new BlockState[size.getX()][size.getZ()][size.getY()];
+        for (int x = 0; x < size.getX(); x++) {
+            for (int y = 0; y < size.getY(); y++) {
+                for (int z = 0; z < size.getZ(); z++) {
+                    blockstates[x][z][y] = get0(min.x + x, min.y + y, min.z + z, true);
+                }
+            }
+        }
+
+        ISchematic schematic = new IStaticSchematic() {
+            @Override
+            public BlockState desiredState(int i, int i1, int i2, BlockState blockState, List<BlockState> list) {
+                return null;
+            }
+
+            @Override
+            public int widthX() {
+                return size.getX();
+            }
+
+            @Override
+            public int heightY() {
+                return size.getY();
+            }
+
+            @Override
+            public int lengthZ() {
+                return size.getZ();
+            }
+
+            @Override
+            public BlockState getDirect(int i, int i1, int i2) {
+                return blockstates[i][i1][i2];
+            }
+        };
+        composite.put(schematic, min.x - origin.x, min.y - origin.y, min.z - origin.z);
+
+        return new SelectionClipboard(composite, origin.subtract(pos));
+    }
+
+    public SelectionClipboard copyArea(BlockPos targetPos){
+        SelectionStorage.clipboard = getAreaAsSchematic(targetPos);
+        return SelectionStorage.clipboard;
+    }
+
+    public static BlockState getFromChunk(Chunk chunk, int x, int y, int z) {
+        ChunkSection section = chunk.getSection(y >> 4);
+        AtomicBoolean hasOnlyAir = new AtomicBoolean(true);
+        section.getBlockStateContainer().forEachValue(blockState -> {
+            if (blockState != Blocks.AIR.getDefaultState()){
+                hasOnlyAir.set(false);
+                return;
+            }
+        });
+        if (hasOnlyAir.get()) {
+            return Blocks.AIR.getDefaultState();
+        }
+        return section.getBlockState(x & 15, y & 15, z & 15);
+    }
+
+    private BlockState get0(int x, int y, int z, boolean useTheRealWorld) { // Mickey resigned
+        ClientWorld world = MinecraftClient.getInstance().world;
+        // Invalid vertical position
+        if (y < 0 || y >= world.getDimension().height()) {
+            return Blocks.AIR.getDefaultState();
+        }
+
+        if (useTheRealWorld) {
+            Chunk cached = MinecraftClient.getInstance().world.getChunk(getPos1());
+            // there's great cache locality in block state lookups
+            // generally it's within each movement
+            // if it's the same chunk as last time
+            // we can just skip the mc.world.getChunk lookup
+            // which is a Long2ObjectOpenHashMap.get
+            // see issue #113
+            if (cached != null && cached.getPos().x == x >> 4 && cached.getPos().z == z >> 4) {
+                return getFromChunk(cached, x, y, z);
+            }
+            Chunk chunk = MinecraftClient.getInstance().world.getChunk(x >> 4, z >> 4, ChunkStatus.FULL, false);
+            if (chunk != null && chunk.getStatus() != ChunkStatus.EMPTY) {
+                cachedRegion = BaritoneWrapper.getInstance().getWorldProvider().getCurrentWorld().getCachedWorld().getRegion(pos1.getX() >> 9, pos1.getZ() >> 9);
+                return getFromChunk(chunk, x, y, z);
+            }
+        }
+        // same idea here, skip the Long2ObjectOpenHashMap.get if at all possible
+        // except here, it's 512x512 tiles instead of 16x16, so even better repetition
+        ICachedRegion cached = cachedRegion;
+        if (cached == null || cached.getX() != x >> 9 || cached.getZ() != z >> 9) {
+            if (MinecraftClient.getInstance().world == null) {
+                return Blocks.AIR.getDefaultState();
+            }
+            ICachedRegion region = BaritoneWrapper.getInstance().getWorldProvider().getCurrentWorld().getCachedWorld().getRegion(x>>9,z>>9); // world.getChunk(getPos1()).(x >> 9, z >> 9);
+
+            if (region == null) {
+                return Blocks.AIR.getDefaultState();
+            }
+            cachedRegion = BaritoneWrapper.getInstance().getWorldProvider().getCurrentWorld().getCachedWorld().getRegion(pos1.getX() >> 9, pos1.getZ() >> 9);
+            cached = region;
+        }
+        BlockState type = cached.getBlock(x & 511, y, z & 511);
+        if (type == null) {
+            return Blocks.AIR.getDefaultState();
+        }
+        return type;
     }
 
     public boolean isValid(){

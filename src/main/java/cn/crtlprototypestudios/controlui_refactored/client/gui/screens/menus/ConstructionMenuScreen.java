@@ -102,6 +102,7 @@ public class ConstructionMenuScreen extends MenuScreen{
 //                        selectionArea.clearArea();
                         // TODO area selection edit impl.
                         // TODO Open modal to edit coords editing + macro run, i.e. copy / paste / expand / contract etc.
+
                         ScreenStackUtils.exit();
                     });
                     moreActionsSection.childById(ButtonComponent.class, "operation.back").onPress(component2 -> {
@@ -110,7 +111,7 @@ public class ConstructionMenuScreen extends MenuScreen{
                     });
                     selectionAreaItem.child(moreActionsSection);
                 });
-                System.out.printf("%s %s %s", String.valueOf(selectionArea.getPos1().getX()), String.valueOf(selectionArea.getPos1().getY()), String.valueOf(selectionArea.getPos1().getZ()));
+//                System.out.printf("%s %s %s", String.valueOf(selectionArea.getPos1().getX()), String.valueOf(selectionArea.getPos1().getY()), String.valueOf(selectionArea.getPos1().getZ()));
                 component.child(selectionAreaItem);
             }
         });
