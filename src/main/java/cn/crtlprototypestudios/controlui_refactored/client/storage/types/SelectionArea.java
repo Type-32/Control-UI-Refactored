@@ -220,29 +220,46 @@ public class SelectionArea {
         return basicFillAction(SelectionFillType.Default, null, Blocks.AIR, null);
     }
 
+    /**
+     * Generates a {@link SelectionClipboard} containing the schematic representation of the selected area.
+     * The schematic is built from the blocks within the player's current selection using Baritone's API.
+     *
+     * @param setPosition The position to set the origin of the schematic if not null; otherwise, player's current position is used.
+     * @return A {@link SelectionClipboard} object containing the schematic and the relative origin.
+     */
     public SelectionClipboard getAreaAsSchematic(BlockPos setPosition){
-//        BaritoneWrapper.getInstance().getWorldProvider().getCurrentWorld().
+        // Obtain the current player's context from the Baritone Wrapper
         IPlayerContext ctx = BaritoneWrapper.getInstance().getPlayerContext();
+        // Get the player's current position
         BetterBlockPos playerPos = ctx.viewerPos();
+        // If setPosition is provided, use it as the position; otherwise, use the player's position
         BetterBlockPos pos = setPosition != null ? new BetterBlockPos(setPosition) : playerPos;
 
+        // Retrieve the selection from Baritone, if it doesn't exist, create and add it
         ISelection selection = getFromBaritone();
         if(selection == null){
             selection = addToBaritone();
         }
 
+        // Get the minimum point of the selection
         BetterBlockPos origin = selection.min();
+        // Create a new composite schematic with an origin at (0,0,0)
         CompositeSchematic composite = new CompositeSchematic(0, 0, 0);
 
+        // Get the minimum point of the selection again for dimension calculations
         BetterBlockPos min = selection.min();
+        // Calculate the selection's origin based on the minimum coordinates
         origin = new BetterBlockPos(
                 Math.min(origin.x, min.x),
                 Math.min(origin.y, min.y),
                 Math.min(origin.z, min.z)
         );
 
+        // Calculate the size of the selection
         Vec3i size = selection.size();
+        // Initialize an array to hold the BlockStates within the selection
         BlockState[][][] blockstates = new BlockState[size.getX()][size.getZ()][size.getY()];
+        // Iterate over the selection and populate the blockstates array with the selected block states
         for (int x = 0; x < size.getX(); x++) {
             for (int y = 0; y < size.getY(); y++) {
                 for (int z = 0; z < size.getZ(); z++) {
@@ -251,34 +268,42 @@ public class SelectionArea {
             }
         }
 
+        // Create an anonymous ISchematic based on the blockstates array
         ISchematic schematic = new IStaticSchematic() {
+            // Define the desired state for the schematic, not implemented
             @Override
             public BlockState desiredState(int i, int i1, int i2, BlockState blockState, List<BlockState> list) {
                 return null;
             }
 
+            // Return the width of the schematic in blocks
             @Override
             public int widthX() {
                 return size.getX();
             }
 
+            // Return the height of the schematic in blocks
             @Override
             public int heightY() {
                 return size.getY();
             }
 
+            // Return the length of the schematic in blocks
             @Override
             public int lengthZ() {
                 return size.getZ();
             }
 
+            // Get the BlockState directly from the blockstates array
             @Override
             public BlockState getDirect(int i, int i1, int i2) {
-                return blockstates[i][i1][i2];
+                return blockstates[i][i2][i1];
             }
         };
+        // Add the schematic to the composite at an offset calculated from the origin
         composite.put(schematic, min.x - origin.x, min.y - origin.y, min.z - origin.z);
 
+        // Return a new SelectionClipboard containing the composite schematic and the origin offset
         return new SelectionClipboard(composite, origin.subtract(pos));
     }
 

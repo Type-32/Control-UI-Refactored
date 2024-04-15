@@ -98,8 +98,11 @@ public class ConstructionMenuScreen extends MenuScreen{
                         selectionArea.clearArea();
                         ScreenStackUtils.exit();
                     });
+                    moreActionsSection.childById(ButtonComponent.class, "operation.copy").onPress(component2 -> {
+                        // TODO Impl. copy action here
+                        selectionArea.copyArea(null);
+                    });
                     moreActionsSection.childById(ButtonComponent.class, "operation.edit").onPress(component2 -> {
-//                        selectionArea.clearArea();
                         // TODO area selection edit impl.
                         // TODO Open modal to edit coords editing + macro run, i.e. copy / paste / expand / contract etc.
 

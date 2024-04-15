@@ -17,7 +17,6 @@ public class BaritoneWrapper {
     }
 
     public static void stopAllActions(){
-        // TODO: Custom Impl.
         getInstance().getPathingBehavior().cancelEverything();
 //        getInstance().getPathingBehavior().cancelEverything();
 //        getInstance().getMineProcess().cancel();
