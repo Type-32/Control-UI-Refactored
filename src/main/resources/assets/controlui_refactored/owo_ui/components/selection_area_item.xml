@@ -1,189 +1,11 @@
 <owo-ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/wisp-forest/owo-lib/1.20/owo-ui.xsd">
-    <components>
-        <flow-layout direction="horizontal">
-            <children>
-                <flow-layout direction="vertical">
-                    <children>
-                        <scroll direction="horizontal">
-                            <flow-layout direction="horizontal" id="preview.corner-1">
-                                <children>
-                                    <label>
-                                        <text>From</text>
-                                        <color>gray</color>
-                                    </label>
-                                    <item id="preview.corner-1-block-item">
-                                        <stack>minecraft:barrier</stack>
-                                    </item>
-                                    <label>
-                                        <text>At</text>
-                                        <sizing>
-                                            <horizontal method="content">0</horizontal>
-                                        </sizing>
-                                        <vertical-text-alignment>center</vertical-text-alignment>
-                                    </label>
-                                    <label id="preview.corner-1-pos-x">
-                                        <text>{{corner-1-pos-x}}</text>
-                                        <shadow>true</shadow>
-                                        <color>red</color>
-                                        <sizing>
-                                            <horizontal method="content">0</horizontal>
-                                        </sizing>
-                                        <vertical-text-alignment>center</vertical-text-alignment>
-                                    </label>
-                                    <label id="preview.corner-1-pos-y">
-                                        <text>{{corner-1-pos-y}}</text>
-                                        <shadow>true</shadow>
-                                        <color>green</color>
-                                        <sizing>
-                                            <horizontal method="content">0</horizontal>
-                                        </sizing>
-                                        <vertical-text-alignment>center</vertical-text-alignment>
-                                    </label>
-                                    <label id="preview.corner-1-pos-z">
-                                        <text>{{corner-1-pos-z}}</text>
-                                        <shadow>true</shadow>
-                                        <color>blue</color>
-                                        <sizing>
-                                            <horizontal method="content">0</horizontal>
-                                        </sizing>
-                                        <vertical-text-alignment>center</vertical-text-alignment>
-                                    </label>
-                                </children>
-                                <vertical-alignment>center</vertical-alignment>
-                                <horizontal-alignment>left</horizontal-alignment>
-                                <gap>5</gap>
-                                <sizing>
-                                    <vertical method="fill">100</vertical>
-                                    <horizontal method="content">0</horizontal>
-                                </sizing>
-                                <padding>
-                                    <horizontal>5</horizontal>
-                                </padding>
-                            </flow-layout>
-                            <surface>
-                                <flat>#50000000</flat>
-                            </surface>
-                            <sizing>
-                                <vertical method="fill">50</vertical>
-                                <horizontal method="fill">100</horizontal>
-                            </sizing>
-                            <vertical-alignment>center</vertical-alignment>
-                        </scroll>
-                        <scroll direction="horizontal">
-                            <flow-layout direction="horizontal" id="preview.corner-2">
-                                <children>
-                                    <label>
-                                        <text>To</text>
-                                        <color>gray</color>
-                                    </label>
-                                    <item id="preview.corner-2-block-item">
-                                        <stack>minecraft:barrier</stack>
-                                    </item>
-                                    <label>
-                                        <text>At</text>
-                                        <sizing>
-                                            <horizontal method="content">0</horizontal>
-                                        </sizing>
-                                        <vertical-text-alignment>center</vertical-text-alignment>
-                                    </label>
-                                    <label id="preview.corner-2-pos-x">
-                                        <text>{{corner-2-pos-x}}</text>
-                                        <shadow>true</shadow>
-                                        <color>red</color>
-                                        <sizing>
-                                            <horizontal method="content">0</horizontal>
-                                        </sizing>
-                                        <vertical-text-alignment>center</vertical-text-alignment>
-                                    </label>
-                                    <label id="preview.corner-2-pos-y">
-                                        <text>{{corner-2-pos-y}}</text>
-                                        <shadow>true</shadow>
-                                        <color>green</color>
-                                        <sizing>
-                                            <horizontal method="content">0</horizontal>
-                                        </sizing>
-                                        <vertical-text-alignment>center</vertical-text-alignment>
-                                    </label>
-                                    <label id="preview.corner-2-pos-z">
-                                        <text>{{corner-2-pos-z}}</text>
-                                        <shadow>true</shadow>
-                                        <color>blue</color>
-                                        <sizing>
-                                            <horizontal method="content">0</horizontal>
-                                        </sizing>
-                                        <vertical-text-alignment>center</vertical-text-alignment>
-                                    </label>
-                                </children>
-                                <vertical-alignment>center</vertical-alignment>
-                                <horizontal-alignment>left</horizontal-alignment>
-                                <gap>5</gap>
-                                <sizing>
-                                    <vertical method="fill">100</vertical>
-                                    <horizontal method="content">0</horizontal>
-                                </sizing>
-                                <padding>
-                                    <horizontal>5</horizontal>
-                                </padding>
-                            </flow-layout>
-                            <surface>
-                                <flat>#50000000</flat>
-                            </surface>
-                            <sizing>
-                                <vertical method="fill">50</vertical>
-                                <horizontal method="fill">100</horizontal>
-                            </sizing>
-                            <vertical-alignment>center</vertical-alignment>
-                        </scroll>
-                    </children>
-                    <sizing>
-                        <vertical method="fill">100</vertical>
-                        <horizontal method="fill">80</horizontal>
-                    </sizing>
-                </flow-layout>
-                <flow-layout direction="vertical">
-                    <children>
-                        <button id="action.more-actions">
-                            <text>🖋</text>
-                            <tooltip-text>More Actions</tooltip-text>
-                            <horizontal-alignment>center</horizontal-alignment>
-                            <renderer>
-                                <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
-                            </renderer>
-                            <sizing>
-                                <vertical method="fill">50</vertical>
-                                <horizontal method="fill">100</horizontal>
-                            </sizing>
-                        </button>
-                        <button id="action.delete-selection">
-                            <text>🗑</text>
-                            <tooltip-text>Delete Selection</tooltip-text>
-                            <horizontal-alignment>center</horizontal-alignment>
-                            <renderer>
-                                <flat color="dark-red" hovered-color="red" disabled-color="black"/>
-                            </renderer>
-                            <sizing>
-                                <vertical method="fill">50</vertical>
-                                <horizontal method="fill">100</horizontal>
-                            </sizing>
-                        </button>
-                    </children>
-                    <sizing>
-                        <vertical method="fill">100</vertical>
-                        <horizontal method="fill">20</horizontal>
-                    </sizing>
-                </flow-layout>
-            </children>
-            <sizing>
-                <horizontal method="fill">100</horizontal>
-                <vertical method="fixed">40</vertical>
-            </sizing>
-        </flow-layout>
-    </components>
+
     <templates>
         <template name="selection-area-item">
             <flow-layout direction="horizontal">
                 <children>
+<!--                    The core body elements container-->
                     <flow-layout direction="vertical">
                         <children>
                             <scroll direction="horizontal">
@@ -322,6 +144,7 @@
                             <horizontal method="fill">80</horizontal>
                         </sizing>
                     </flow-layout>
+<!--                    The side buttons container-->
                     <flow-layout direction="vertical">
                         <children>
                             <button id="action.more-actions">
@@ -364,6 +187,7 @@
         <template name="selection-area-item-choices">
             <flow-layout direction="vertical">
                 <children>
+<!--                    I put the buttons in different containers to make it look like its in a grid of sorts-->
                     <flow-layout direction="horizontal">
                         <children>
                             <button id="operation.fill">
@@ -460,6 +284,189 @@
                 <surface>
                     <outline>white</outline>
                 </surface>
+            </flow-layout>
+        </template>
+        <template name="schematic-selection-area-item">
+            <flow-layout direction="horizontal">
+                <children>
+<!--                    TODO edit for corresponding functionality-->
+<!--                    This template is for the schematics from litematica, which needs to use litematica loader API-->
+                    <flow-layout direction="vertical">
+                        <children>
+                            <scroll direction="horizontal">
+                                <flow-layout direction="horizontal" id="preview.corner-1">
+                                    <children>
+                                        <label>
+                                            <text>From</text>
+                                            <color>gray</color>
+                                        </label>
+                                        <item id="preview.corner-1-block-item">
+                                            <stack>minecraft:barrier</stack>
+                                        </item>
+                                        <label>
+                                            <text>At</text>
+                                            <sizing>
+                                                <horizontal method="content">0</horizontal>
+                                            </sizing>
+                                            <vertical-text-alignment>center</vertical-text-alignment>
+                                        </label>
+                                        <label id="preview.corner-1-pos-x">
+                                            <text>{{corner-1-pos-x}}</text>
+                                            <shadow>true</shadow>
+                                            <color>red</color>
+                                            <sizing>
+                                                <horizontal method="content">0</horizontal>
+                                            </sizing>
+                                            <vertical-text-alignment>center</vertical-text-alignment>
+                                        </label>
+                                        <label id="preview.corner-1-pos-y">
+                                            <text>{{corner-1-pos-y}}</text>
+                                            <shadow>true</shadow>
+                                            <color>green</color>
+                                            <sizing>
+                                                <horizontal method="content">0</horizontal>
+                                            </sizing>
+                                            <vertical-text-alignment>center</vertical-text-alignment>
+                                        </label>
+                                        <label id="preview.corner-1-pos-z">
+                                            <text>{{corner-1-pos-z}}</text>
+                                            <shadow>true</shadow>
+                                            <color>blue</color>
+                                            <sizing>
+                                                <horizontal method="content">0</horizontal>
+                                            </sizing>
+                                            <vertical-text-alignment>center</vertical-text-alignment>
+                                        </label>
+                                    </children>
+                                    <vertical-alignment>center</vertical-alignment>
+                                    <horizontal-alignment>left</horizontal-alignment>
+                                    <gap>5</gap>
+                                    <sizing>
+                                        <vertical method="fill">100</vertical>
+                                        <horizontal method="content">0</horizontal>
+                                    </sizing>
+                                    <padding>
+                                        <horizontal>5</horizontal>
+                                    </padding>
+                                </flow-layout>
+                                <surface>
+                                    <flat>#50000000</flat>
+                                </surface>
+                                <sizing>
+                                    <vertical method="fill">50</vertical>
+                                    <horizontal method="fill">100</horizontal>
+                                </sizing>
+                                <vertical-alignment>center</vertical-alignment>
+                            </scroll>
+                            <scroll direction="horizontal">
+                                <flow-layout direction="horizontal" id="preview.corner-2">
+                                    <children>
+                                        <label>
+                                            <text>To</text>
+                                            <color>gray</color>
+                                        </label>
+                                        <item id="preview.corner-2-block-item">
+                                            <stack>minecraft:barrier</stack>
+                                        </item>
+                                        <label>
+                                            <text>At</text>
+                                            <sizing>
+                                                <horizontal method="content">0</horizontal>
+                                            </sizing>
+                                            <vertical-text-alignment>center</vertical-text-alignment>
+                                        </label>
+                                        <label id="preview.corner-2-pos-x">
+                                            <text>{{corner-2-pos-x}}</text>
+                                            <shadow>true</shadow>
+                                            <color>red</color>
+                                            <sizing>
+                                                <horizontal method="content">0</horizontal>
+                                            </sizing>
+                                            <vertical-text-alignment>center</vertical-text-alignment>
+                                        </label>
+                                        <label id="preview.corner-2-pos-y">
+                                            <text>{{corner-2-pos-y}}</text>
+                                            <shadow>true</shadow>
+                                            <color>green</color>
+                                            <sizing>
+                                                <horizontal method="content">0</horizontal>
+                                            </sizing>
+                                            <vertical-text-alignment>center</vertical-text-alignment>
+                                        </label>
+                                        <label id="preview.corner-2-pos-z">
+                                            <text>{{corner-2-pos-z}}</text>
+                                            <shadow>true</shadow>
+                                            <color>blue</color>
+                                            <sizing>
+                                                <horizontal method="content">0</horizontal>
+                                            </sizing>
+                                            <vertical-text-alignment>center</vertical-text-alignment>
+                                        </label>
+                                    </children>
+                                    <vertical-alignment>center</vertical-alignment>
+                                    <horizontal-alignment>left</horizontal-alignment>
+                                    <gap>5</gap>
+                                    <sizing>
+                                        <vertical method="fill">100</vertical>
+                                        <horizontal method="content">0</horizontal>
+                                    </sizing>
+                                    <padding>
+                                        <horizontal>5</horizontal>
+                                    </padding>
+                                </flow-layout>
+                                <surface>
+                                    <flat>#50000000</flat>
+                                </surface>
+                                <sizing>
+                                    <vertical method="fill">50</vertical>
+                                    <horizontal method="fill">100</horizontal>
+                                </sizing>
+                                <vertical-alignment>center</vertical-alignment>
+                            </scroll>
+                        </children>
+                        <sizing>
+                            <vertical method="fill">100</vertical>
+                            <horizontal method="fill">80</horizontal>
+                        </sizing>
+                    </flow-layout>
+                    <!--                    The side buttons container-->
+                    <flow-layout direction="vertical">
+                        <children>
+                            <button id="action.more-actions">
+                                <text>🖋</text>
+                                <tooltip-text>More Actions</tooltip-text>
+                                <horizontal-alignment>center</horizontal-alignment>
+                                <renderer>
+                                    <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
+                                </renderer>
+                                <sizing>
+                                    <vertical method="fill">50</vertical>
+                                    <horizontal method="fill">100</horizontal>
+                                </sizing>
+                            </button>
+                            <button id="action.delete-selection">
+                                <text>🗑</text>
+                                <tooltip-text>Delete Selection</tooltip-text>
+                                <horizontal-alignment>center</horizontal-alignment>
+                                <renderer>
+                                    <flat color="dark-red" hovered-color="red" disabled-color="black"/>
+                                </renderer>
+                                <sizing>
+                                    <vertical method="fill">50</vertical>
+                                    <horizontal method="fill">100</horizontal>
+                                </sizing>
+                            </button>
+                        </children>
+                        <sizing>
+                            <vertical method="fill">100</vertical>
+                            <horizontal method="fill">20</horizontal>
+                        </sizing>
+                    </flow-layout>
+                </children>
+                <sizing>
+                    <horizontal method="fill">100</horizontal>
+                    <vertical method="fixed">40</vertical>
+                </sizing>
             </flow-layout>
         </template>
     </templates>

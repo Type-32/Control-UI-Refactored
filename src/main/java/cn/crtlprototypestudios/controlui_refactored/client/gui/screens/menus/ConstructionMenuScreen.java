@@ -99,11 +99,9 @@ public class ConstructionMenuScreen extends MenuScreen{
                         ScreenStackUtils.exit();
                     });
                     moreActionsSection.childById(ButtonComponent.class, "operation.copy").onPress(component2 -> {
-                        // TODO Impl. copy action here
                         selectionArea.copyArea(null);
                     });
                     moreActionsSection.childById(ButtonComponent.class, "operation.edit").onPress(component2 -> {
-                        // TODO area selection edit impl.
                         // TODO Open modal to edit coords editing + macro run, i.e. copy / paste / expand / contract etc.
 
                         ScreenStackUtils.exit();
@@ -117,6 +115,9 @@ public class ConstructionMenuScreen extends MenuScreen{
 //                System.out.printf("%s %s %s", String.valueOf(selectionArea.getPos1().getX()), String.valueOf(selectionArea.getPos1().getY()), String.valueOf(selectionArea.getPos1().getZ()));
                 component.child(selectionAreaItem);
             }
+
+            // TODO impl. find all schematics and instantiate and list the UI items here
+            // Currently, need to find a way to implement a function to fetch all the loaded litematica schematics with some positional info.
         });
     }
 }

@@ -13,24 +13,50 @@
                             <children>
                                 <flow-layout direction="horizontal">
                                     <children>
-                                        <label>
-                                            <text>Selections</text>
+                                        <flow-layout direction="horizontal">
+                                            <children>
+                                                <label>
+                                                    <text>Selections</text>
+                                                    <shadow>true</shadow>
+                                                </label>
+                                            </children>
                                             <sizing>
                                                 <horizontal method="fill">80</horizontal>
                                             </sizing>
-                                            <shadow>true</shadow>
-                                        </label>
-                                        <button>
-                                            <text>+</text>
-                                            <sizing>
-                                                <horizontal method="fill">20</horizontal>
-                                            </sizing>
-                                            <renderer>
-                                                <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
-                                            </renderer>
-                                            <horizontal-alignment>right</horizontal-alignment>
+                                            <horizontal-alignment>left</horizontal-alignment>
                                             <vertical-alignment>center</vertical-alignment>
-                                        </button>
+                                        </flow-layout>
+                                        <flow-layout direction="horizontal">
+                                            <children>
+                                                <button>
+<!--                                                    TODO impl. add selection area function-->
+                                                    <text>+</text>
+                                                    <sizing>
+                                                        <horizontal method="fill">20</horizontal>
+                                                    </sizing>
+                                                    <renderer>
+                                                        <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
+                                                    </renderer>
+                                                    <horizontal-alignment>right</horizontal-alignment>
+                                                    <vertical-alignment>center</vertical-alignment>
+                                                </button>
+                                                <button id="action.paste-from-clipboard">
+<!--                                                    TODO impl. Paste from clipboard function & refresh selections list-->
+                                                    <text>Paste</text>
+                                                    <sizing>
+                                                        <horizontal method="fill">20</horizontal>
+                                                    </sizing>
+                                                    <renderer>
+                                                        <flat color="#50000000" hovered-color="#77afafaf" disabled-color="black"/>
+                                                    </renderer>
+                                                    <horizontal-alignment>right</horizontal-alignment>
+                                                    <vertical-alignment>center</vertical-alignment>
+                                                </button>
+                                            </children>
+                                            <vertical-alignment>center</vertical-alignment>
+                                            <horizontal-alignment>right</horizontal-alignment>
+                                            <gap>5</gap>
+                                        </flow-layout>
                                     </children>
                                     <vertical-alignment>center</vertical-alignment>
                                     <sizing>

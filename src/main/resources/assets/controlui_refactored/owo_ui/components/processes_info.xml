@@ -42,6 +42,7 @@
         </flow-layout>
     </components>
     <templates>
+<!--        !TODO Remove or unobstruct this element, currently this element overlays the entire screen which blocks mouse pointer click raycasts and thus blocks interaction with the UI-->
         <template name="processes-info">
             <flow-layout direction="horizontal">
                 <children>
