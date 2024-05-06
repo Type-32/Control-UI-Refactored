@@ -4,7 +4,7 @@ Your favorite baritoe "google maps for minecraft mod" but a UI for it.
 
 [![fabric-api](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/requires/fabric-api_vector.svg)](https://fabricmc.net)
 [![github](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg)](https://github.com//Type-32/control-ui-refactored)
-[![modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com)
+[![curseforge](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/curseforge_vector.svg)](https://modrinth.com)
 
 ## Dependencies
 - [Baritone (A.K.A. google maps for block game)](https://github.com/cabaletta/baritone) for 1.20.1, **SPECIFICALLY REQUIRES ELYTRA BETA VERSION OR HIGHER** _(For this you probably need to join the Baritone Mod Discord)_
