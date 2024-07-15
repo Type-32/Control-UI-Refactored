@@ -3,7 +3,6 @@ package cn.crtlprototypestudios.controlui_refactored.client.gui.screens.modals;
 import cn.crtlprototypestudios.controlui_refactored.client.gui.screens.menus.MenuScreen;
 import cn.crtlprototypestudios.controlui_refactored.client.gui.utils.ScreenStackUtils;
 import cn.crtlprototypestudios.controlui_refactored.client.storage.types.MiningPreset;
-import cn.crtlprototypestudios.controlui_refactored.client.storage.types.MiningPresetType;
 import cn.crtlprototypestudios.controlui_refactored.client.storage.types.PresetsData;
 import cn.crtlprototypestudios.controlui_refactored.client.storage.utils.ControlUIRefactoredStorage;
 import cn.crtlprototypestudios.controlui_refactored.client.storage.utils.FileNameReferences;
@@ -61,7 +60,7 @@ public class NewMiningPresetModalScreen extends MenuScreen {
 
             MiningModalStorage.miningPreset.setPresetName(rootComponent.childById(TextBoxComponent.class, "input.preset-name").getText());
             MiningModalStorage.miningPreset.setPresetDescription(rootComponent.childById(TextBoxComponent.class, "input.preset-desc").getText());
-            MiningModalStorage.miningPreset.setPresetType(MiningPresetType.ArrayBased);
+            MiningModalStorage.miningPreset.setPresetType(MiningPreset.Types.ArrayBased);
             MiningModalStorage.miningPreset.setAmount(64);
 
             if(isEditing) {
@@ -103,7 +102,7 @@ public class NewMiningPresetModalScreen extends MenuScreen {
 
         blockPreviewHolder.<FlowLayout>configure(component -> {
             if(MiningModalStorage.miningPreset == null)
-                MiningModalStorage.miningPreset = new MiningPreset("", "", MiningPresetType.ArrayBased, new ArrayList<>(), 64);
+                MiningModalStorage.miningPreset = new MiningPreset("", "", MiningPreset.Types.ArrayBased, new ArrayList<>(), 64);
 
 //            if (!MiningModalStorage.blocksSelection.isEmpty()) MiningModalStorage.miningPreset.setBlocks(MiningModalStorage.blocksSelection);
 //            else return;

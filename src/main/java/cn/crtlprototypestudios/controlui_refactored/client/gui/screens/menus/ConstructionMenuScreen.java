@@ -77,7 +77,7 @@ public class ConstructionMenuScreen extends MenuScreen{
                     moreActionsSection.childById(ButtonComponent.class, "operation.replace").onPress(component2 -> { // The Fill button
                         BlocksSelectionModalScreen modal = new BlocksSelectionModalScreen(false, null,
                                 result -> {
-                                    if(result != null) { // First Modal Layer checks for player selecting the replacing block.
+                                    if(result != null) { // First Modal Layer checks for player selecting the repulacing block.
                                         BlocksSelectionModalScreen multiSelectModal = new BlocksSelectionModalScreen(true, null, multiResult -> {
                                             if(multiResult != null){ // Second Modal Layer checks for player's about-to-be-replaced blocks.
                                                 selectionArea.replaceArea(result.get(0), multiResult);

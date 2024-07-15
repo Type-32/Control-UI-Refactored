@@ -2,6 +2,7 @@ package cn.crtlprototypestudios.controlui_refactored.client.storage.types;
 
 import cn.crtlprototypestudios.controlui_refactored.client.data_types.IJsonConvertible;
 import cn.crtlprototypestudios.controlui_refactored.client.storage.utils.BlocksSelectionModalStorage;
+import cn.crtlprototypestudios.controlui_refactored.client.utility.interfaces.IPaletteExecutable;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -12,11 +13,11 @@ import java.util.ArrayList;
 public class MiningPreset implements IJsonConvertible<MiningPreset> {
     private String presetName;
     private String presetDescription;
-    private MiningPresetType presetType;
+    private Types presetType;
     private ArrayList<Block> blocks;
     private int amount;
 
-    public MiningPreset(String presetName, String presetDescription, MiningPresetType presetType, ArrayList<Block> blocks, int amount) {
+    public MiningPreset(String presetName, String presetDescription, Types presetType, ArrayList<Block> blocks, int amount) {
         this.blocks = blocks;
         this.amount = amount;
         this.presetName = presetName;
@@ -29,7 +30,7 @@ public class MiningPreset implements IJsonConvertible<MiningPreset> {
         this.amount = 64;
         this.presetName = presetName;
         this.presetDescription = presetDescription;
-        this.presetType = MiningPresetType.GoalBased;
+        this.presetType = Types.GoalBased;
     }
 
     public MiningPreset(JsonObject json){
@@ -67,11 +68,11 @@ public class MiningPreset implements IJsonConvertible<MiningPreset> {
         this.amount = amount;
     }
 
-    public MiningPresetType getPresetType() {
+    public Types getPresetType() {
         return presetType;
     }
 
-    public void setPresetType(MiningPresetType presetType) {
+    public void setPresetType(Types presetType) {
         this.presetType = presetType;
     }
 
@@ -89,7 +90,7 @@ public class MiningPreset implements IJsonConvertible<MiningPreset> {
      * @return         Returns the command form of this preset.
      */
     public String toCommand(){
-        return presetType == MiningPresetType.GoalBased ? String.format("mine %d %s", amount, blocks.get(0).getLootTableId().toString()) : String.format("mine %s", toIdentifierList(blocks));
+        return presetType == Types.GoalBased ? String.format("mine %d %s", amount, blocks.get(0).getLootTableId().toString()) : String.format("mine %s", toIdentifierList(blocks));
     }
 
     /**
@@ -130,7 +131,7 @@ public class MiningPreset implements IJsonConvertible<MiningPreset> {
             if (BlocksSelectionModalStorage.cachedBlocksIdentifiers.contains(id.getAsString()))
                 ids.add(BlocksSelectionModalStorage.cachedBlocksRegistry.get(BlocksSelectionModalStorage.cachedBlocksIdentifiers.indexOf(id.getAsString())));
         }
-        return new MiningPreset(json.get(JSON_PRESET_NAME).getAsString(), json.get(JSON_PRESET_DESCRIPTION).getAsString(), MiningPresetType.valueOf(json.get(JSON_PRESET_TYPE).getAsString()), ids, json.get(JSON_AMOUNT).getAsInt());
+        return new MiningPreset(json.get(JSON_PRESET_NAME).getAsString(), json.get(JSON_PRESET_DESCRIPTION).getAsString(), Types.valueOf(json.get(JSON_PRESET_TYPE).getAsString()), ids, json.get(JSON_AMOUNT).getAsInt());
     }
 
     @Override
@@ -146,4 +147,9 @@ public class MiningPreset implements IJsonConvertible<MiningPreset> {
     private static final String JSON_PRESET_TYPE = "presetType";
     private static final String JSON_BLOCKS = "blocks";
     private static final String JSON_AMOUNT = "amount";
+
+    public enum Types {
+        GoalBased,
+        ArrayBased
+    }
 }
